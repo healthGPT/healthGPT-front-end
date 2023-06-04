@@ -6,10 +6,10 @@ import TypingEffect from "../helper/TypingEffect";
 const ChatDisplay = () => {
   const { messages } = useContext(ChatContext);
 
-  console.log(messages);
+//   console.log(messages);
 
   return (
-    <div className="chatDisplay">
+    <div className="chat-display">
       {messages.map((message, index) => (
         <div key={index} className={`message ${message.user}`}>
           {/* {message.user === "bot" ? (

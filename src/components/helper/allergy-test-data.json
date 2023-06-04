@@ -1,0 +1,235 @@
+{
+    "Bioresonance-Test-Report":{
+       "Food-Items":{
+          "Explanation":"Several everyday food items, ingredients and preservatives are included in this section of the report. Items listed are those to which your sample has indicated a sensitivity to",
+          "Details":[
+             {
+                "Item":"Anchovy",
+                "Sensitivity":94
+             },
+             {
+                "Item":"B-Lactoglobulin",
+                "Sensitivity":85
+             },
+             {
+                "Item":"Button Mushroom",
+                "Sensitivity":95
+             },
+             {
+                "Item":"Coriander",
+                "Sensitivity":90
+             },
+             {
+                "Item":"E 270 Lactic acid",
+                "Sensitivity":93
+             },
+             {
+                "Item":"E 300 Ascorbic Acid",
+                "Sensitivity":88
+             },
+             {
+                "Item":"E 441 - Gelatin",
+                "Sensitivity":85
+             },
+             {
+                "Item":"Fennel Fresh",
+                "Sensitivity":93
+             },
+             {
+                "Item":"Lamb's liver",
+                "Sensitivity":93
+             },
+             {
+                "Item":"Lobster",
+                "Sensitivity":98
+             },
+             {
+                "Item":"Marshmallow Tea",
+                "Sensitivity":91
+             },
+             {
+                "Item":"Molasses",
+                "Sensitivity":92
+             },
+             {
+                "Item":"Olive Oil",
+                "Sensitivity":94
+             },
+             {
+                "Item":"Pecan nuts",
+                "Sensitivity":85
+             },
+             {
+                "Item":"Prawns",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Red Kidney Bean",
+                "Sensitivity":88
+             },
+             {
+                "Item":"Romaine Lettuce",
+                "Sensitivity":95
+             },
+             {
+                "Item":"Red Wine",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Rosemary",
+                "Sensitivity":88
+             },
+             {
+                "Item":"Soy sauce",
+                "Sensitivity":94
+             },
+             {
+                "Item":"Soya Bean",
+                "Sensitivity":91
+             },
+             {
+                "Item":"Veal",
+                "Sensitivity":95
+             },
+             {
+                "Item":"Wheat",
+                "Sensitivity":96
+             },
+             {
+                "Item":"Whitefish",
+                "Sensitivity":89
+             },
+             {
+                "Item":"Yerba mate tea",
+                "Sensitivity":85
+             }
+          ]
+       },
+       "Non-Food-Items":{
+          "Explanation":"Non-food items tested include different animals and animal dander, fungus, plant life and other inedible items.",
+          "Details":[
+             {
+                "Item":"Aspergillus Fumigatus",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Clover (Triofolium spp.)",
+                "Sensitivity":92
+             },
+             {
+                "Item":"Goldenrod (Solidago virgaurea)",
+                "Sensitivity":97
+             },
+             {
+                "Item":"Peanut plant",
+                "Sensitivity":99
+             },
+             {
+                "Item":"Pine, Scottish (Pinus sylvestris)",
+                "Sensitivity":93
+             },
+             {
+                "Item":"Rats",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Rose (Rosa spp.)",
+                "Sensitivity":94
+             },
+             {
+                "Item":"Storage Mite",
+                "Sensitivity":100
+             }
+          ]
+       },
+       "Nutritional-Imbalances":{
+          "Explanation":"All essential vitamins and minerals are included in this section. If any imbalances are suspected, your results will suggest a few sources for each nutrient.",
+          "Details":[
+             {
+                "Nutrient":"Acidophillus",
+                "Imbalance":96
+             },
+             {
+                "Nutrient":"Beta-Carotene",
+                "Imbalance":94
+             },
+             {
+                "Nutrient":"Creatine",
+                "Imbalance":91
+             },
+             {
+                "Nutrient":"Folic acid",
+                "Imbalance":96
+             },
+             {
+                "Nutrient":"Iodine",
+                "Imbalance":85
+             },
+             {
+                "Nutrient":"Iron (Nutrition)",
+                "Imbalance":99
+             },
+             {
+                "Nutrient":"Vitamin B12",
+                "Imbalance":97
+             },
+             {
+                "Nutrient":"Vitamin B2",
+                "Imbalance":98
+             },
+             {
+                "Nutrient":"Vitamin B3",
+                "Imbalance":98
+             },
+             {
+                "Nutrient":"Vitamin B6",
+                "Imbalance":98
+             },
+             {
+                "Nutrient":"Vitamin K",
+                "Imbalance":98
+             }
+          ]
+       },
+       "Metal-Sensitivities":{
+          "Explanation":"Any metals which your sample indicates a sensitivity towards will be listed here, along with common sources of these metals.",
+          "Details":[
+             {
+                "Metal":"Manganese (Mn)",
+                "Sensitivity":98
+             }
+          ]
+       },
+       "Gut-Biome":{
+          "Explanation":"Your gut needs a balance of good bacteria to function correctly. This section indicates suspected imbalances of certain strains of good bacteria.",
+          "Details":[
+             {
+                "Strain":"Lactobacillus Reuteri",
+                "Imbalance":100
+             },
+             {
+                "Strain":"Streptococcus Thermophilus",
+                "Imbalance":100
+             }
+          ]
+       },
+       "Hormonal-Imbalances":{
+          "Explanation":"Checking for various hormonal imbalances such as estrogen, testosterone, cortisol, serotonin and prolactin.",
+          "Details":[
+             {
+                "Hormone":"Oestradiol",
+                "Imbalance":98
+             }
+          ]
+       },
+       "Digestive Health & Metabolism Analysis":{
+          "Explanation":"This section analyses various enzymes which aid digestion and absorption of nutrients.",
+          "Details":[
+             {
+                "Enzyme":"Amylase",
+                "Imbalance":97
+             }
+          ]
+       }
+    }
+ }

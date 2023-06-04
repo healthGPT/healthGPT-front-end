@@ -1,19 +1,17 @@
 import "./App.css";
-import { ChatProvider } from "./context/Chat/ChatContext";
-import ChatDisplay from "./components/Chat/ChatDisplay";
-import SearchBar from "./components/Search/SearchBar";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Chat from "./pages/Chat";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h3>pqCHAT</h3>
-
-      <ChatProvider>
-        <ChatDisplay />
-        <SearchBar />
-      </ChatProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

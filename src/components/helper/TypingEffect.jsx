@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const TypingEffect = ({ text }) => {
   const [content, setContent] = useState("");
 
-  console.log({ text });
+  //   console.log({ text });
 
   useEffect(() => {
     let i = 0;

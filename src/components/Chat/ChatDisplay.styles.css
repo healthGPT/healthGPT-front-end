@@ -7,7 +7,7 @@
 }
 
 .chat-display {
-  max-width: 850px;
+  /* max-width: 850px; */
   border-radius: 8px;
   border: .5px solid rgba(128, 128, 128, 0.25);
 }
