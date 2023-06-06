@@ -1,13 +1,6 @@
 const PercentDot = ({ backgroundImage, right = "15px" }) => {
   return (
-    <div
-      className="levelDot"
-      style={{
-        top: "15px",
-        right: right,
-        borderRadius: "20px",
-      }}
-    >
+    <div className="levelDot">
       <div
         style={{
           width: "20px",
