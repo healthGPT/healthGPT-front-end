@@ -99,4 +99,11 @@
     margin-bottom: 6px;
   }
   
+  .empty-category-message {
+    margin: 16px 0px 16px 0px;
+    text-align: left;
+    color: gray;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
   

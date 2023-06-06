@@ -72,7 +72,7 @@ const LeftAccordionCategories = () => {
     const isExpanded = expandedPanels[section] || false;
 
     return (
-      <>
+      <React.Fragment>
         <Accordion
           expanded={isExpanded}
           onChange={handleChange(section)}
@@ -106,71 +106,82 @@ const LeftAccordionCategories = () => {
               {Explanation}
             </Typography>
 
-            {Details.map((item, itemId) => (
-              <React.Fragment key={itemId}>
-                <div className="outer-container">
-                  {Object.entries(item).map(([key, value], index) => (
-                    <div
-                      className="first-inside-object"
-                      key={`${itemId}-${index}`}
-                    >
-                      <div className="item-details-wrapper">
+            {!Details || Details.length === 0 ? (
+              <div className="empty-category-message">
+                You have shown NO anomalies for this section and therefore have
+                no results
+              </div>
+            ) : (
+              <React.Fragment>
+                {Details.map((item, itemId) => (
+                  <React.Fragment key={itemId}>
+                    <div className="outer-container">
+                      {Object.entries(item).map(([key, value], index) => (
                         <div
-                          className={`item-container-inside-accordion-card ${
-                            index === 1 ? "right-aligned" : "left-aligned"
-                          }`}
+                          className="first-inside-object"
+                          key={`${itemId}-${index}`}
                         >
-                          <div
-                            className={`this-div-1 ${
-                              index === 1 ? "percentage" : ""
-                            }`}
-                          >
-                            {index === 1 ? (
-                              <div className="percentage-container">
-                                <div
-                                  className={`color-indicator ${
-                                    value >= "95"
-                                      ? "red-gradient"
-                                      : "yellow-gradient"
-                                  }`}
-                                ></div>
-                                <div className="value-container">
-                                  <span>{value}</span>
-                                  {index === 1 && "%"}
-                                </div>
+                          <div className="item-details-wrapper">
+                            <div
+                              className={`item-container-inside-accordion-card ${
+                                index === 1 ? "right-aligned" : "left-aligned"
+                              }`}
+                            >
+                              <div
+                                className={`this-div-1 ${
+                                  index === 1 ? "percentage" : ""
+                                }`}
+                              >
+                                {index === 1 ? (
+                                  <div className="percentage-container">
+                                    <div
+                                      className={`color-indicator ${
+                                        value >= "95"
+                                          ? "red-gradient"
+                                          : "yellow-gradient"
+                                      }`}
+                                    ></div>
+                                    <div className="value-container">
+                                      <span>{value}</span>
+                                      {index === 1 && "%"}
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div className="text-container">
+                                    <span
+                                      className="clickable-text"
+                                      onClick={() =>
+                                        clickOnItem(value, section)
+                                      }
+                                    >
+                                      {value}
+                                    </span>
+                                  </div>
+                                )}
                               </div>
-                            ) : (
-                              <div className="text-container">
-                                <span
-                                  className="clickable-text"
-                                  onClick={() => clickOnItem(value, section)}
-                                >
-                                  {value}
-                                </span>
-                              </div>
-                            )}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
 
-                {Object.entries(item).map(([key, value], index) => (
-                  <React.Fragment key={`${itemId}-${index}`}>
-                    {isLoading[`${section}-${value}`] && <LoadingSpinner />}
-                    {assistantResponses[`${section}-${value}`] && (
-                      <p className="assistant-response">
-                        {assistantResponses[`${section}-${value}`]}
-                      </p>
-                    )}
+                    {Object.entries(item).map(([key, value], index) => (
+                      <React.Fragment key={`${itemId}-${index}`}>
+                        {isLoading[`${section}-${value}`] && <LoadingSpinner />}
+                        {assistantResponses[`${section}-${value}`] && (
+                          <p className="assistant-response">
+                            {assistantResponses[`${section}-${value}`]}
+                          </p>
+                        )}
+                      </React.Fragment>
+                    ))}
                   </React.Fragment>
                 ))}
               </React.Fragment>
-            ))}
+            )}
           </AccordionDetails>
         </Accordion>
-      </>
+      </React.Fragment>
     );
   };
 
