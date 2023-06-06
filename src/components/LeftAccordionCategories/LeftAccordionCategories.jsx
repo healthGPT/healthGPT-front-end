@@ -18,19 +18,10 @@ import JsonFileInput from "../helper/JsonFileInput/JsonFileInput";
 // Styles
 import "./LeftAccordionCategories.styles.css";
 
-const LeftAccordionCategories = () => {
+const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
   const [expandedPanels, setExpandedPanels] = useState({});
   const [assistantResponses, setAssistantResponses] = useState({});
   const [isLoading, setIsLoading] = useState({});
-  const [jsonData, setJsonData] = useState(() => {
-    const localData = localStorage.getItem("jsonData");
-    return localData ? JSON.parse(localData) : null;
-  });
-
-  const handleFileChange = (data) => {
-    localStorage.setItem("jsonData", JSON.stringify(data));
-    setJsonData(data);
-  };
 
   const allergyReport = jsonData ? jsonData["Bioresonance-Test-Report"] : null;
 

@@ -1,17 +1,45 @@
+import React, { useContext, useState } from "react";
+import { SummaryContext } from "../../context/Summary/SummaryContext";
+
+import RegularButton from "../../components/Buttons/RegularButton";
 import LeftAccordionCategories from "../../components/LeftAccordionCategories/LeftAccordionCategories";
 import PercentDot from "../../components/PercentDot/PercentDot";
+import RightCompnent from "../../components/RightComponent/RightComponent";
 import "./Home.styles.css";
+import { generateSummary } from "../../components/helper/helper";
+import { SummaryContextProvider } from "../../context/Summary/SummaryContext";
 
 const Home = () => {
+  const { updateSummaryData } = useContext(SummaryContext);
+
+  const [jsonData, setJsonData] = useState(() => {
+    const localData = localStorage.getItem("jsonData");
+    return localData ? JSON.parse(localData) : null;
+  });
+
+  const handleFileChange = (data) => {
+    localStorage.setItem("jsonData", JSON.stringify(data));
+    setJsonData(data);
+  };
+
+  const handleDataUpdate = () => {
+    updateSummaryData(generateSummary(jsonData));
+  };
   return (
-    <>
+    <React.Fragment>
       <WholeScreen>
         <LeftSide>
-          <LeftAccordionCategories />
+          <LeftAccordionCategories
+            jsonData={jsonData}
+            handleFileChange={handleFileChange}
+          />
+          <RegularButton handleDataUpdate={handleDataUpdate} />
         </LeftSide>
-        <RightSide></RightSide>
+        <RightSide>
+          <RightCompnent />
+        </RightSide>
       </WholeScreen>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -61,7 +89,7 @@ const LeftSide = ({ children }) => {
   );
 };
 
-const RightSide = () => {
+const RightSide = ({ children }) => {
   return (
     <div
       style={{
@@ -69,6 +97,8 @@ const RightSide = () => {
         backgroundColor: "white",
         overflow: "auto",
       }}
-    ></div>
+    >
+      {children}
+    </div>
   );
 };
