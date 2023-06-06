@@ -34,8 +34,6 @@ const LeftAccordionCategories = () => {
 
   const allergyReport = jsonData ? jsonData["Bioresonance-Test-Report"] : null;
 
-  console.log({ allergyReport });
-
   const handleChange = (panel) => (_event, isExpanded) => {
     setExpandedPanels((prevExpandedPanels) => ({
       ...prevExpandedPanels,
@@ -185,7 +183,7 @@ const LeftAccordionCategories = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              flexDirection: "column", // This will stack the elements vertically
+              flexDirection: "column",
               height: "100%",
             }}
           >

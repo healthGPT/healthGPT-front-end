@@ -46,7 +46,7 @@ const RightSide = () => {
     <div
       style={{
         width: "60%",
-        backgroundColor: "blue",
+        backgroundColor: "white",
         overflow: "auto",
       }}
     ></div>

@@ -1,0 +1,184 @@
+{
+    "Bioresonance-Test-Report":{
+       "Food-Items":{
+          "Explanation":"Several everyday food items, ingredients and preservatives are included in this section of the report. Items listed are those to which your sample has indicated a sensitivity to",
+          "Details":[
+             {
+                "Item":"Ale",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Basil",
+                "Sensitivity":93
+             },
+             {
+                "Item":"B-Lactoglobulin",
+                "Sensitivity":92
+             },
+             {
+                "Item":"Camomile Tea",
+                "Sensitivity":85
+             },
+             {
+                "Item":"E 440 Pectin, amidated pectin",
+                "Sensitivity":95
+             },
+             {
+                "Item":"E 904 Shellac",
+                "Sensitivity":87
+             },
+             {
+                "Item":"Escarole Lettuce",
+                "Sensitivity":99
+             },
+             {
+                "Item":"Hemp seed",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Oyster Mushroom",
+                "Sensitivity":89
+             },
+             {
+                "Item":"Pineapple",
+                "Sensitivity":96
+             },
+             {
+                "Item":"Pumpkin Seed",
+                "Sensitivity":95
+             },
+             {
+                "Item": "Pumpkin Seed",
+                "Sensitivity":95
+             },
+             {
+                "Item":"Red Kidney Bean",
+                "Sensitivity":89
+             },
+             {
+               "Item":"Rocket (Arugula)",
+               "Sensitivity":89
+             },
+             {
+                "Item":"Roobois tea",
+                "Sensitivity":97
+             },
+             {
+                "Item":"Rosemary",
+                "Sensitivity":90
+             },
+             {
+                "Item":"Tuna",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Yerba mate tea",
+                "Sensitivity":96
+             }
+          ]
+       },
+       "Non-Food-Items":{
+          "Explanation":"Non-food items tested include different animals and animal dander, fungus, plant life and other inedible items.",
+          "Details":[
+             {
+                "Item":"Aspergillus Niger",
+                "Sensitivity":97
+             },
+             {
+                "Item":"Chlorine",
+                "Sensitivity":87
+             },
+             {
+                "Item":"Clover (Triofoliumspp.)",
+                "Sensitivity":95
+             },
+             {
+                "Item":"Peanut plant",
+                "Sensitivity":90
+             },
+             {
+                "Item":"Penicillioyl",
+                "Sensitivity":86
+             },
+             {
+                "Item":"Ragweed (Ambrosia elatior)",
+                "Sensitivity":100
+             },
+             {
+                "Item":"Timothy grass (Phleumpratense)",
+                "Sensitivity":86
+             },
+             {
+                "Item":"Storage Mite",
+                "Sensitivity":95
+             }
+          ]
+       },
+       "Nutritional-Imbalances":{
+          "Explanation":"All essential vitamins and minerals are included in this section. If any imbalances are suspected, your results will suggest a few sources for each nutrient.",
+          "Details":[
+             {
+                "Nutrient":"Anthocyanidins",
+                "Imbalance":91
+             },
+             {
+                "Nutrient":"Biotin",
+                "Imbalance":89
+             },
+             {
+                "Nutrient":"Creatine",
+                "Imbalance":89
+             },
+             {
+                "Nutrient":"Omega 6",
+                "Imbalance":90
+             },
+             {
+                "Nutrient":"Oxalic acid",
+                "Imbalance":86
+             },
+             {
+                "Nutrient":"Pyridoxine",
+                "Imbalance":99
+             }
+          ]
+       },
+       "Metal-Sensitivities":{
+          "Explanation":"Any metals which your sample indicates a sensitivity towards will be listed here, along with common sources of these metals.",
+          "Details":[
+             {
+                "Metal":"Lead (Pb)",
+                "Sensitivity":97
+             },
+             {
+               "Metal":"Titanium(Ti)",
+               "Sensitivity":86
+            }
+          ]
+       },
+       "Gut-Biome":{
+          "Explanation":"Your gut needs a balance of good bacteria to function correctly. This section indicates suspected imbalances of certain strains of good bacteria.",
+          "Details":[
+             {
+                "Strain":"Bacillus Coagulans",
+                "Imbalance":93
+             }
+          ]
+       },
+       "Hormonal-Imbalances":{
+          "Explanation":"Checking for various hormonal imbalances such as estrogen, testosterone, cortisol, serotonin and prolactin.",
+          "Details":[
+             
+          ]
+       },
+       "Digestive Health & Metabolism Analysis":{
+          "Explanation":"This section analyses various enzymes which aid digestion and absorption of nutrients.",
+          "Details":[
+             {
+                "Enzyme":"Pepsin",
+                "Imbalance":98
+             }
+          ]
+       }
+    }
+ }
