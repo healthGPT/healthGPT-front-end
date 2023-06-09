@@ -6,6 +6,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 // GPT
 import { GPT35Turbo } from "../helper/openai";
@@ -14,6 +15,7 @@ import { generatePrompts } from "../helper/prompts/prompts";
 // Components
 import LoadingSpinner from "../Spinner/LoadingSpinner";
 import JsonFileInput from "../helper/JsonFileInput/JsonFileInput";
+import PercentDot from "../PercentDot/PercentDot";
 
 // Styles
 import "./LeftAccordionCategories.styles.css";
@@ -177,9 +179,9 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       {!jsonData || !jsonData["Bioresonance-Test-Report"] ? (
-        <>
+        <React.Fragment>
           <div
             style={{
               display: "flex",
@@ -192,15 +194,265 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
             <JsonFileInput onFileChange={handleFileChange} />
             {jsonData && <pre>{JSON.stringify(jsonData, null, 2)}</pre>}
           </div>
-        </>
+        </React.Fragment>
       ) : (
-        <>
-          {Object.keys(allergyReport).map((section) =>
-            renderAccordion(section)
-          )}
-        </>
+        <React.Fragment>
+          <Accordion
+            style={{
+              border: "1px solid #03c8a8",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <CheckBoxIcon
+                    sx={{ color: "#03c8a8", marginRight: "20px" }}
+                  />
+                  Bioresonance Test Report
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className="percent-dots-wrapper">
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "orange" }}>borderline response</span>
+                  </p>
+                </div>
+
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "red" }}>high response</span>
+                  </p>
+                </div>
+              </div>
+              {Object.keys(allergyReport).map((section) =>
+                renderAccordion(section)
+              )}
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: "1px solid #03c8a8",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* <CheckBoxIcon
+                    sx={{ color: "#03c8a8", marginRight: "20px" }}
+                  /> */}
+                  Health Predisposition
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {/* <div className="percent-dots-wrapper">
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "orange" }}>borderline response</span>
+                  </p>
+                </div>
+
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "red" }}>high response</span>
+                  </p>
+                </div>
+              </div> */}
+              {/* {Object.keys(allergyReport).map((section) =>
+                renderAccordion(section)
+              )} */}
+              <p>This is some text</p>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: "1px solid #03c8a8",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* <CheckBoxIcon
+                    sx={{ color: "#03c8a8", marginRight: "20px" }}
+                  /> */}
+                  Pharmacognetics Report
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {/* <div className="percent-dots-wrapper">
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "orange" }}>borderline response</span>
+                  </p>
+                </div>
+
+                <div className="percent-dot-wrapper">
+                  <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
+                  <p className="percent-dots-p-text">
+                    These are items that in testing have returned a{" "}
+                    <span style={{ color: "red" }}>high response</span>
+                  </p>
+                </div>
+              </div> */}
+              {/* {Object.keys(allergyReport).map((section) =>
+                renderAccordion(section)
+              )} */}
+              <p>This is some text</p>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: "1px solid #03c8a8",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* <CheckBoxIcon
+                    sx={{ color: "#03c8a8", marginRight: "20px" }}
+                  /> */}
+                  Blood Panel Test
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <p>This is some text</p>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: "1px solid #03c8a8",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* <CheckBoxIcon
+                    sx={{ color: "#03c8a8", marginRight: "20px" }}
+                  /> */}
+                  User Info
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <p>This is some text</p>
+            </AccordionDetails>
+          </Accordion>
+        </React.Fragment>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

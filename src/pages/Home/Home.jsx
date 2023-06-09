@@ -17,14 +17,27 @@ const Home = () => {
     return localData ? JSON.parse(localData) : null;
   });
 
+  const [jsonDataHealthPredisposition, setJsonDataHealthPredisposition] =
+    useState(() => {
+      const localData = localStorage.getItem("jsonDataHealthPredisposition");
+      return localData ? JSON.parse(localData) : null;
+    });
+
+  // For Bioresonence Test Report
   const handleFileChange = (data) => {
     localStorage.setItem("jsonData", JSON.stringify(data));
     setJsonData(data);
   };
 
+  const handleFileChangeHealthPredisposition = (data) => {
+    localStorage.setItem("jsonDataHealthPredisposition", JSON.stringify(data));
+    setJsonDataHealthPredisposition(data);
+  };
+
   const handleDataUpdate = () => {
     updateSummaryData(generateSummary(jsonData));
   };
+
   return (
     <React.Fragment>
       <WholeScreen>
@@ -67,23 +80,6 @@ const LeftSide = ({ children }) => {
         position: "relative",
       }}
     >
-      <div className="percent-dots-wrapper">
-        <div className="percent-dot-wrapper">
-          <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
-          <p className="percent-dots-p-text">
-            These are items that in testing have returned a{" "}
-            <span style={{ color: "orange" }}>borderline response</span>
-          </p>
-        </div>
-
-        <div className="percent-dot-wrapper">
-          <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
-          <p className="percent-dots-p-text">
-            These are items that in testing have returned a{" "}
-            <span style={{ color: "red" }}>high response</span>
-          </p>
-        </div>
-      </div>
       {children}
     </div>
   );

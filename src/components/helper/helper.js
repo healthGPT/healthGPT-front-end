@@ -11,7 +11,8 @@ export const generateSummary = (data) => {
   
         summary[section][subsection] = {
           Explanation: subsectionData.Explanation,
-          Count: subsectionData.Details.length
+          Count: subsectionData.Details.length,
+          Details: subsectionData.Details
         };
       }
     }

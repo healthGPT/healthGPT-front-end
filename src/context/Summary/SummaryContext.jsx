@@ -5,7 +5,7 @@ export const SummaryContext = createContext();
 export const SummaryContextProvider = ({ children }) => {
   const [summaryData, setSummaryData] = useState(null);
 
-  console.log(summaryData);
+  //   console.log(summaryData);
 
   const updateSummaryData = (data) => {
     setSummaryData(data);

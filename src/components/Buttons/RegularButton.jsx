@@ -1,6 +1,6 @@
 import "./Buttons.styles.css";
 
-const RegularButton = ({ buttonWord = "Summorize data", handleDataUpdate }) => {
+const RegularButton = ({ buttonWord = "Summarize data", handleDataUpdate }) => {
   return (
     <>
       <button
