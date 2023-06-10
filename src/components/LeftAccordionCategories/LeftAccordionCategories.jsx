@@ -365,31 +365,11 @@ const LeftAccordionCategories = ({
                   {/* <CheckBoxIcon
                     sx={{ color: "#03c8a8", marginRight: "20px" }}
                   /> */}
-                  Pharmacognetics Report
+                  Pharmacogenetics Report
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {/* <div className="percent-dots-wrapper">
-                <div className="percent-dot-wrapper">
-                  <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
-                  <p className="percent-dots-p-text">
-                    These are items that in testing have returned a{" "}
-                    <span style={{ color: "orange" }}>borderline response</span>
-                  </p>
-                </div>
-
-                <div className="percent-dot-wrapper">
-                  <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
-                  <p className="percent-dots-p-text">
-                    These are items that in testing have returned a{" "}
-                    <span style={{ color: "red" }}>high response</span>
-                  </p>
-                </div>
-              </div> */}
-              {/* {Object.keys(allergyReport).map((section) =>
-                renderAccordion(section)
-              )} */}
               <p>This is some text</p>
             </AccordionDetails>
           </Accordion>

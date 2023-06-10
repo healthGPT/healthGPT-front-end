@@ -28,7 +28,6 @@ export const generateSummary = (data) => {
     ) {
       return "rgb(248, 54, 0)";
     }
-    // Return a default color if none of the conditions are met
     return "black";
   };
   
