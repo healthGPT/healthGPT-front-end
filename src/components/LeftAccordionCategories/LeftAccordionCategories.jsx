@@ -17,15 +17,25 @@ import LoadingSpinner from "../Spinner/LoadingSpinner";
 import JsonFileInput from "../helper/JsonFileInput/JsonFileInput";
 import PercentDot from "../PercentDot/PercentDot";
 
+// helpers
+import { getTextColor } from "../helper/helper";
+
 // Styles
 import "./LeftAccordionCategories.styles.css";
 
-const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
+const LeftAccordionCategories = ({
+  jsonData,
+  jsonDataHealthPredisposition,
+  handleFileChange,
+  handleFileChangeHealthPredisposition,
+}) => {
   const [expandedPanels, setExpandedPanels] = useState({});
   const [assistantResponses, setAssistantResponses] = useState({});
   const [isLoading, setIsLoading] = useState({});
 
   const allergyReport = jsonData ? jsonData["Bioresonance-Test-Report"] : null;
+
+  console.log(jsonData);
 
   const handleChange = (panel) => (_event, isExpanded) => {
     setExpandedPanels((prevExpandedPanels) => ({
@@ -55,8 +65,12 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
     }));
   };
 
-  const renderAccordion = (section) => {
+  const renderAccordionBioresonance = (section) => {
     if (!jsonData) return null;
+
+    // console.log({ allergyReport });
+
+    // console.log({ section });
 
     const { Details, Explanation } = allergyReport[section];
 
@@ -178,6 +192,23 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
     );
   };
 
+  const renderAccordioHealthPredisposition = (section) => {
+    const explanation = jsonDataHealthPredisposition[section];
+
+    return (
+      <div className="health-predisposition-wrapper-text">
+        <p className="health-predisposition-wrapper-text-left">
+          <strong>{section}</strong>
+        </p>
+        <p className="health-predisposition-wrapper-text-right">
+          <span style={{ color: getTextColor(explanation) }}>
+            {explanation}
+          </span>
+        </p>
+      </div>
+    );
+  };
+
   return (
     <React.Fragment>
       {!jsonData || !jsonData["Bioresonance-Test-Report"] ? (
@@ -227,7 +258,7 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
                   <CheckBoxIcon
                     sx={{ color: "#03c8a8", marginRight: "20px" }}
                   />
-                  Bioresonance Test Report
+                  Bioresonance Test
                 </span>
               </Typography>
             </AccordionSummary>
@@ -250,7 +281,7 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
                 </div>
               </div>
               {Object.keys(allergyReport).map((section) =>
-                renderAccordion(section)
+                renderAccordionBioresonance(section)
               )}
             </AccordionDetails>
           </Accordion>
@@ -282,35 +313,25 @@ const LeftAccordionCategories = ({ jsonData, handleFileChange }) => {
                     alignItems: "center",
                   }}
                 >
-                  {/* <CheckBoxIcon
-                    sx={{ color: "#03c8a8", marginRight: "20px" }}
-                  /> */}
-                  Health Predisposition
+                  {jsonDataHealthPredisposition && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
+                  Health Predisposition Report
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {/* <div className="percent-dots-wrapper">
-                <div className="percent-dot-wrapper">
-                  <PercentDot backgroundImage="linear-gradient(to bottom, #FEA700, #FFD400)" />
-                  <p className="percent-dots-p-text">
-                    These are items that in testing have returned a{" "}
-                    <span style={{ color: "orange" }}>borderline response</span>
-                  </p>
-                </div>
+              {!jsonDataHealthPredisposition && (
+                <JsonFileInput
+                  onFileChange={handleFileChangeHealthPredisposition}
+                />
+              )}
 
-                <div className="percent-dot-wrapper">
-                  <PercentDot backgroundImage="linear-gradient(to bottom, #f83600, #FE6D10)" />
-                  <p className="percent-dots-p-text">
-                    These are items that in testing have returned a{" "}
-                    <span style={{ color: "red" }}>high response</span>
-                  </p>
-                </div>
-              </div> */}
-              {/* {Object.keys(allergyReport).map((section) =>
-                renderAccordion(section)
-              )} */}
-              <p>This is some text</p>
+              {Object.keys(jsonDataHealthPredisposition).map((section) =>
+                renderAccordioHealthPredisposition(section)
+              )}
             </AccordionDetails>
           </Accordion>
 

@@ -23,12 +23,12 @@ const Home = () => {
       return localData ? JSON.parse(localData) : null;
     });
 
-  // For Bioresonence Test Report
+  // Bioresonence Test Report
   const handleFileChange = (data) => {
     localStorage.setItem("jsonData", JSON.stringify(data));
     setJsonData(data);
   };
-
+  // Health Predisposition
   const handleFileChangeHealthPredisposition = (data) => {
     localStorage.setItem("jsonDataHealthPredisposition", JSON.stringify(data));
     setJsonDataHealthPredisposition(data);
@@ -44,9 +44,13 @@ const Home = () => {
         <LeftSide>
           <LeftAccordionCategories
             jsonData={jsonData}
+            jsonDataHealthPredisposition={jsonDataHealthPredisposition}
             handleFileChange={handleFileChange}
+            handleFileChangeHealthPredisposition={
+              handleFileChangeHealthPredisposition
+            }
           />
-          <RegularButton handleDataUpdate={handleDataUpdate} />
+          {/* <RegularButton handleDataUpdate={handleDataUpdate} /> */}
         </LeftSide>
         <RightSide>
           <RightCompnent />

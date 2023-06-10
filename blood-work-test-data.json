@@ -1,0 +1,43 @@
+{
+    "bloodWork": {
+        "metabolicPanel": {
+            "sodium": {"value": 136, "unit": "mmol/L"},
+            "potassium": {"value": 3.4, "unit": "mmol/L"},
+            "bicarbonate": {"value": 25, "unit": "mmol/L"},
+            "chloride": {"value": 100, "unit": "mmol/L"},
+            "glucose": {"value": 108, "unit": "mg/dL"},
+            "calcium": {"value": 9.6, "unit": "mg/dL"},
+            "urea": {"value": 11, "unit": "mg/dL"},
+            "creatinine": {"value": 1.2, "unit": "mg/dL"},
+            "alkalinePhosphatase": {"value": 63, "unit": "U/L"},
+            "alanineAminotrasferase": {"value": 18, "unit": "U/L"},
+            "aspartateAminotransferase": {"value": 26, "unit": "U/L"},
+            "totalBilirubin": {"value": 1, "unit": "mg/dL"},
+            "albumin": {"value": 4.5, "unit": "g/dL"},
+            "totalProtein": {"value": 6.8, "unit": "g/dL"}
+        },
+        "lipidPanel": {
+            "totalCholesterol": {"value": 189, "unit": "mg/dL"},
+            "HDLCholesterol": {"value": 65, "unit": "mg/OL"},
+            "triglycerides": {"value": 57, "unit": "mg/dL"},
+            "nonHDLCholesterol": {"value": 124, "unit": "mg/dL"},
+            "cholesterolHDL": {"value": 2.9, "unit": ""},
+            "LDLCholesterol": {"value": 113, "unit": "mg/OL"},
+            "VLDLCholesterol": {"value": 11, "unit": "mg/OL"}
+        },
+        "bloodCount": {
+            "whiteBloodCellCount": {"value": 4.5, "unit": "Thousand/uL"},
+            "redBloodCellCount": {"value": 5.27, "unit": "Million/UL"},
+            "hemoglobin": {"value": 15.8, "unit": "g/dL"},
+            "hematocrit": {"value": 47.8, "unit": "%"},
+            "MCV": {"value": 90.7, "unit": "fL"},
+            "MCH": {"value": 30, "unit": "pg"},
+            "MCHC": {"value": 33.1, "unit": "g/dL"},
+            "RDW": {"value": 12.5, "unit": "%"},
+            "plateletCount": {"value": 157, "unit": "Thousand/UL"},
+            "MPV": {"value": 13, "unit": "fL"},
+            "absoluteNeutrophils": {"value": 2948, "unit": "cells/uL"},
+            "absoluteLymphocytes": {"value": 1260, "unit": "cells/uL"}
+        }
+    }
+}

@@ -19,3 +19,17 @@ export const generateSummary = (data) => {
   
     return summary;
   }
+
+  export const getTextColor = (value) => {
+    if (
+      value.includes("Slightly increased risk") ||
+      value.includes("Increased likelihood") ||
+      value.includes("Variant detected, not likely at increased risk")
+    ) {
+      return "rgb(248, 54, 0)";
+    }
+    // Return a default color if none of the conditions are met
+    return "black";
+  };
+  
+  
