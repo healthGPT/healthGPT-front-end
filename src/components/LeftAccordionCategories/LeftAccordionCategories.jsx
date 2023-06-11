@@ -7,6 +7,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Tooltip from "@mui/material/Tooltip";
 
 // GPT
 import { GPT35Turbo } from "../helper/openai";
@@ -20,6 +21,8 @@ import PercentDot from "../PercentDot/PercentDot";
 // helpers
 import { getTextColor } from "../helper/helper";
 import { toTitleCase } from "../helper/helper";
+import { getNormalRange } from "../helper/helper";
+import { isValueWithinNormalRange } from "../helper/helper";
 
 // Styles
 import "./LeftAccordionCategories.styles.css";
@@ -255,17 +258,41 @@ const LeftAccordionCategories = ({
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails className="accordion-details">
-                  {Object.entries(panelData).map(([testName, testData]) => (
-                    <p
-                      className="blood-panel-wrapper-text-right"
-                      key={testName}
-                    >
-                      <span>
-                        {toTitleCase(testName)}: {testData.value}{" "}
-                        {testData.unit}
-                      </span>
-                    </p>
-                  ))}
+                  {Object.entries(panelData).map(([testName, testData]) => {
+                    const normalRange = getNormalRange(panelName, testName);
+                    const isAboveNormal = testData.value > normalRange.max;
+                    const isBelowNormal = testData.value < normalRange.min;
+
+                    let valueClass;
+                    if (isAboveNormal) {
+                      valueClass = "above-normal";
+                    } else if (isBelowNormal) {
+                      valueClass = "below-normal";
+                    } else {
+                      valueClass = "normal";
+                    }
+
+                    const tooltipContent = `Normal range: ${normalRange.min} - ${normalRange.max}`;
+
+                    return (
+                      <div
+                        className={`blood-panel-wrapper-span ${valueClass}`}
+                        key={testName}
+                      >
+                        <Tooltip title={tooltipContent}>
+                          <div>
+                            <span>{toTitleCase(testName)}:</span>
+                          </div>
+                        </Tooltip>
+                        <div>
+                          <Tooltip title={tooltipContent}>
+                            <span>{testData.value}</span>
+                          </Tooltip>
+                          <span className="blood-panel-unit">{`(${testData.unit})`}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </AccordionDetails>
               </Accordion>
             </div>

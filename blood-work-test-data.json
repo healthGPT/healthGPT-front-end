@@ -21,7 +21,7 @@
             "HDLCholesterol": {"value": 65, "unit": "mg/OL"},
             "triglycerides": {"value": 57, "unit": "mg/dL"},
             "nonHDLCholesterol": {"value": 124, "unit": "mg/dL"},
-            "cholesterolHDL": {"value": 2.9, "unit": ""},
+            "cholesterolHDL": {"value": 2.9, "unit": "mg/dL"},
             "LDLCholesterol": {"value": 113, "unit": "mg/OL"},
             "VLDLCholesterol": {"value": 11, "unit": "mg/OL"}
         },
