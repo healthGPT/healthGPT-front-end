@@ -23,15 +23,40 @@ const Home = () => {
       return localData ? JSON.parse(localData) : null;
     });
 
+  const [jsonDataPharmacogenetics, setJsonDataPharmacogenetics] = useState(
+    () => {
+      const localData = localStorage.getItem("jsonDataPharmacogenetics");
+      return localData ? JSON.parse(localData) : null;
+    }
+  );
+
+  const [jsonDataBloodPanel, setJsonDataBloodPanel] = useState(() => {
+    const localData = localStorage.getItem("jsonDataBloodPanel");
+    return localData ? JSON.parse(localData) : null;
+  });
+
   // Bioresonence Test Report
   const handleFileChange = (data) => {
     localStorage.setItem("jsonData", JSON.stringify(data));
     setJsonData(data);
   };
+
   // Health Predisposition
   const handleFileChangeHealthPredisposition = (data) => {
     localStorage.setItem("jsonDataHealthPredisposition", JSON.stringify(data));
     setJsonDataHealthPredisposition(data);
+  };
+
+  // Pharmacogenetics Report
+  const handleFileChangePharmacogenetics = (data) => {
+    localStorage.setItem("jsonDataPharmacogenetics", JSON.stringify(data));
+    setJsonDataPharmacogenetics(data);
+  };
+
+  // Blood Panel Report
+  const handleFileChangeBloodPanel = (data) => {
+    localStorage.setItem("jsonDataBloodPanel", JSON.stringify(data));
+    setJsonDataBloodPanel(data);
   };
 
   const handleDataUpdate = () => {
@@ -45,10 +70,14 @@ const Home = () => {
           <LeftAccordionCategories
             jsonData={jsonData}
             jsonDataHealthPredisposition={jsonDataHealthPredisposition}
+            jsonDataPharmacogenetics={jsonDataPharmacogenetics}
+            jsonDataBloodPanel={jsonDataBloodPanel}
             handleFileChange={handleFileChange}
             handleFileChangeHealthPredisposition={
               handleFileChangeHealthPredisposition
             }
+            handleFileChangePharmacogenetics={handleFileChangePharmacogenetics}
+            handleFileChangeBloodPanel={handleFileChangeBloodPanel}
           />
           {/* <RegularButton handleDataUpdate={handleDataUpdate} /> */}
         </LeftSide>

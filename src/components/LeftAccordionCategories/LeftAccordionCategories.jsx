@@ -19,6 +19,7 @@ import PercentDot from "../PercentDot/PercentDot";
 
 // helpers
 import { getTextColor } from "../helper/helper";
+import { toTitleCase } from "../helper/helper";
 
 // Styles
 import "./LeftAccordionCategories.styles.css";
@@ -26,16 +27,18 @@ import "./LeftAccordionCategories.styles.css";
 const LeftAccordionCategories = ({
   jsonData,
   jsonDataHealthPredisposition,
+  jsonDataPharmacogenetics,
+  jsonDataBloodPanel,
   handleFileChange,
   handleFileChangeHealthPredisposition,
+  handleFileChangePharmacogenetics,
+  handleFileChangeBloodPanel,
 }) => {
   const [expandedPanels, setExpandedPanels] = useState({});
   const [assistantResponses, setAssistantResponses] = useState({});
   const [isLoading, setIsLoading] = useState({});
 
   const allergyReport = jsonData ? jsonData["Bioresonance-Test-Report"] : null;
-
-  console.log(jsonData);
 
   const handleChange = (panel) => (_event, isExpanded) => {
     setExpandedPanels((prevExpandedPanels) => ({
@@ -67,10 +70,6 @@ const LeftAccordionCategories = ({
 
   const renderAccordionBioresonance = (section) => {
     if (!jsonData) return null;
-
-    // console.log({ allergyReport });
-
-    // console.log({ section });
 
     const { Details, Explanation } = allergyReport[section];
 
@@ -192,9 +191,8 @@ const LeftAccordionCategories = ({
     );
   };
 
-  const renderAccordioHealthPredisposition = (section) => {
+  const renderAccordionHealthPredisposition = (section) => {
     const explanation = jsonDataHealthPredisposition[section];
-
     return (
       <div className="health-predisposition-wrapper-text">
         <p className="health-predisposition-wrapper-text-left">
@@ -205,6 +203,74 @@ const LeftAccordionCategories = ({
             {explanation}
           </span>
         </p>
+      </div>
+    );
+  };
+
+  const renderAccordionPharmacogenetics = (section) => {
+    const explanation = jsonDataPharmacogenetics[section];
+    return (
+      <div className="health-predisposition-wrapper-text">
+        <p className="health-predisposition-wrapper-text-left">{section}</p>
+        <p className="health-predisposition-wrapper-text-right">
+          <span style={{ color: getTextColor(explanation) }}>
+            {explanation}
+          </span>
+        </p>
+      </div>
+    );
+  };
+
+  const renderAccordionBloodPanel = (section, data) => {
+    return (
+      <div className="blood-panel-wrapper-text">
+        {Object.entries(data[section]).map(([panelName, panelData]) => {
+          const isExpanded = expandedPanels[panelName] || false;
+
+          return (
+            <div key={panelName}>
+              <Accordion
+                expanded={isExpanded}
+                onChange={handleChange(panelName)}
+                className="accordion"
+                key={section}
+                style={{
+                  border: "1px solid #03c8a8",
+                  borderRadius: "8px",
+                  marginBottom: "16px",
+                  position: "static",
+                  boxShadow: "none",
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  className="accordion-summary"
+                >
+                  <Typography
+                    variant="h2"
+                    className="section-title"
+                    style={{ fontSize: "24px" }}
+                  >
+                    {toTitleCase(panelName)}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className="accordion-details">
+                  {Object.entries(panelData).map(([testName, testData]) => (
+                    <p
+                      className="blood-panel-wrapper-text-right"
+                      key={testName}
+                    >
+                      <span>
+                        {toTitleCase(testName)}: {testData.value}{" "}
+                        {testData.unit}
+                      </span>
+                    </p>
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -330,7 +396,7 @@ const LeftAccordionCategories = ({
               )}
 
               {Object.keys(jsonDataHealthPredisposition).map((section) =>
-                renderAccordioHealthPredisposition(section)
+                renderAccordionHealthPredisposition(section)
               )}
             </AccordionDetails>
           </Accordion>
@@ -362,15 +428,35 @@ const LeftAccordionCategories = ({
                     alignItems: "center",
                   }}
                 >
-                  {/* <CheckBoxIcon
-                    sx={{ color: "#03c8a8", marginRight: "20px" }}
-                  /> */}
+                  {jsonDataPharmacogenetics && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
                   Pharmacogenetics Report
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <p>This is some text</p>
+              <Typography
+                className="explanation"
+                style={{ marginBottom: "20px" }}
+              >
+                Pharmacogenetics is a field of research that studies how a
+                person's genes affect how he or she responds to medications. Its
+                long-term goal is to help doctors select the drugs and doses
+                best suited for each person.
+              </Typography>
+              {!jsonDataPharmacogenetics && (
+                <JsonFileInput
+                  onFileChange={handleFileChangePharmacogenetics}
+                />
+              )}
+
+              {jsonDataPharmacogenetics &&
+                Object.keys(jsonDataPharmacogenetics).map((section) =>
+                  renderAccordionPharmacogenetics(section)
+                )}
             </AccordionDetails>
           </Accordion>
 
@@ -388,8 +474,6 @@ const LeftAccordionCategories = ({
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <div></div>
-
               <Typography
                 variant="h2"
                 className="section-title"
@@ -401,15 +485,24 @@ const LeftAccordionCategories = ({
                     alignItems: "center",
                   }}
                 >
-                  {/* <CheckBoxIcon
-                    sx={{ color: "#03c8a8", marginRight: "20px" }}
-                  /> */}
+                  {jsonDataBloodPanel && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
                   Blood Panel Test
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <p>This is some text</p>
+              {!jsonDataBloodPanel && (
+                <JsonFileInput onFileChange={handleFileChangeBloodPanel} />
+              )}
+
+              {jsonDataBloodPanel &&
+                Object.keys(jsonDataBloodPanel).map((section) =>
+                  renderAccordionBloodPanel(section, jsonDataBloodPanel)
+                )}
             </AccordionDetails>
           </Accordion>
 

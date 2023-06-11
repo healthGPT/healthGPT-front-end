@@ -26,15 +26,15 @@
             "VLDLCholesterol": {"value": 11, "unit": "mg/OL"}
         },
         "bloodCount": {
-            "whiteBloodCellCount": {"value": 4.5, "unit": "Thousand/uL"},
-            "redBloodCellCount": {"value": 5.27, "unit": "Million/UL"},
+            "whiteBloodCellCount": {"value": 4.5, "unit": "Thousan/uL"},
+            "redBloodCellCount": {"value": 5.27, "unit": "Million/uL"},
             "hemoglobin": {"value": 15.8, "unit": "g/dL"},
             "hematocrit": {"value": 47.8, "unit": "%"},
             "MCV": {"value": 90.7, "unit": "fL"},
             "MCH": {"value": 30, "unit": "pg"},
             "MCHC": {"value": 33.1, "unit": "g/dL"},
             "RDW": {"value": 12.5, "unit": "%"},
-            "plateletCount": {"value": 157, "unit": "Thousand/UL"},
+            "plateletCount": {"value": 157, "unit": "Thousand/uL"},
             "MPV": {"value": 13, "unit": "fL"},
             "absoluteNeutrophils": {"value": 2948, "unit": "cells/uL"},
             "absoluteLymphocytes": {"value": 1260, "unit": "cells/uL"}
