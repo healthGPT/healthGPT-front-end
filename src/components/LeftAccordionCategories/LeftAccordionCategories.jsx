@@ -17,6 +17,8 @@ import { generatePrompts } from "../helper/prompts/prompts";
 import LoadingSpinner from "../Spinner/LoadingSpinner";
 import JsonFileInput from "../helper/JsonFileInput/JsonFileInput";
 import PercentDot from "../PercentDot/PercentDot";
+import UserInfoForm from "../Forms/UserInfoForm";
+import UserInfoDisplay from "../User/UserInfoDisplay";
 
 // helpers
 import { getTextColor } from "../helper/helper";
@@ -26,6 +28,7 @@ import { isValueWithinNormalRange } from "../helper/helper";
 
 // Styles
 import "./LeftAccordionCategories.styles.css";
+import RegularButton from "../Buttons/RegularButton";
 
 const LeftAccordionCategories = ({
   jsonData,
@@ -36,6 +39,24 @@ const LeftAccordionCategories = ({
   handleFileChangeHealthPredisposition,
   handleFileChangePharmacogenetics,
   handleFileChangeBloodPanel,
+  name,
+  setName,
+  email,
+  setEmail,
+  age,
+  setAge,
+  sex,
+  setSex,
+  heightFeet,
+  setHeightFeet,
+  heightInches,
+  setHeightInches,
+  weight,
+  setWeight,
+  job,
+  setJob,
+  userInfoForm,
+  setUserInfoForm,
 }) => {
   const [expandedPanels, setExpandedPanels] = useState({});
   const [assistantResponses, setAssistantResponses] = useState({});
@@ -281,12 +302,18 @@ const LeftAccordionCategories = ({
                       >
                         <Tooltip title={tooltipContent}>
                           <div>
-                            <span>{toTitleCase(testName)}:</span>
+                            <span style={{ cursor: "default" }}>
+                              {toTitleCase(testName)}:
+                            </span>
                           </div>
                         </Tooltip>
                         <div>
                           <Tooltip title={tooltipContent}>
-                            <span>{testData.value}</span>
+                            <span
+                              style={{ cursor: "default", marginRight: "5px" }}
+                            >
+                              {testData.value}
+                            </span>
                           </Tooltip>
                           <span className="blood-panel-unit">{`(${testData.unit})`}</span>
                         </div>
@@ -323,7 +350,180 @@ const LeftAccordionCategories = ({
         <React.Fragment>
           <Accordion
             style={{
-              border: "1px solid #03c8a8",
+              border: `1px solid ${
+                userInfoForm ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+              }`,
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {userInfoForm && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
+                  User Info
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {!userInfoForm ? (
+                <UserInfoForm
+                  name={name}
+                  setName={setName}
+                  email={email}
+                  setEmail={setEmail}
+                  age={age}
+                  setAge={setAge}
+                  sex={sex}
+                  setSex={setSex}
+                  heightFeet={heightFeet}
+                  setHeightFeet={setHeightFeet}
+                  heightInches={heightInches}
+                  setHeightInches={setHeightInches}
+                  weight={weight}
+                  setWeight={setWeight}
+                  job={job}
+                  setJob={setJob}
+                  userInfoForm={userInfoForm}
+                  setUserInfoForm={setUserInfoForm}
+                />
+              ) : (
+                <div>
+                  <UserInfoDisplay userInfo={userInfoForm} />
+                  <RegularButton />
+                </div>
+              )}
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: `1px solid ${
+                jsonDataBloodPanel ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+              }`,
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {jsonDataBloodPanel && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
+                  Blood Panel Test
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {!jsonDataBloodPanel && (
+                <JsonFileInput onFileChange={handleFileChangeBloodPanel} />
+              )}
+
+              {jsonDataBloodPanel &&
+                Object.keys(jsonDataBloodPanel).map((section) =>
+                  renderAccordionBloodPanel(section, jsonDataBloodPanel)
+                )}
+              <RegularButton />
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: `1px solid ${
+                jsonDataHealthPredisposition ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+              }`,
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <div></div>
+
+              <Typography
+                variant="h2"
+                className="section-title"
+                style={{ fontSize: "24px" }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {jsonDataHealthPredisposition && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )}
+                  Health Predisposition Report
+                </span>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {!jsonDataHealthPredisposition && (
+                <JsonFileInput
+                  onFileChange={handleFileChangeHealthPredisposition}
+                />
+              )}
+
+              {Object.keys(jsonDataHealthPredisposition).map((section) =>
+                renderAccordionHealthPredisposition(section)
+              )}
+
+              <RegularButton />
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion
+            style={{
+              border: `1px solid ${
+                jsonData ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+              }`,
               borderRadius: "8px",
               marginBottom: "16px",
               position: "static",
@@ -376,55 +576,8 @@ const LeftAccordionCategories = ({
               {Object.keys(allergyReport).map((section) =>
                 renderAccordionBioresonance(section)
               )}
-            </AccordionDetails>
-          </Accordion>
 
-          <Accordion
-            style={{
-              border: "1px solid #03c8a8",
-              borderRadius: "8px",
-              marginBottom: "16px",
-              position: "static",
-              boxShadow: "none",
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <div></div>
-
-              <Typography
-                variant="h2"
-                className="section-title"
-                style={{ fontSize: "24px" }}
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {jsonDataHealthPredisposition && (
-                    <CheckBoxIcon
-                      sx={{ color: "#03c8a8", marginRight: "20px" }}
-                    />
-                  )}
-                  Health Predisposition Report
-                </span>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {!jsonDataHealthPredisposition && (
-                <JsonFileInput
-                  onFileChange={handleFileChangeHealthPredisposition}
-                />
-              )}
-
-              {Object.keys(jsonDataHealthPredisposition).map((section) =>
-                renderAccordionHealthPredisposition(section)
-              )}
+              <RegularButton />
             </AccordionDetails>
           </Accordion>
 
@@ -484,58 +637,14 @@ const LeftAccordionCategories = ({
                 Object.keys(jsonDataPharmacogenetics).map((section) =>
                   renderAccordionPharmacogenetics(section)
                 )}
+
+              <RegularButton />
             </AccordionDetails>
           </Accordion>
 
           <Accordion
             style={{
-              border: "1px solid #03c8a8",
-              borderRadius: "8px",
-              marginBottom: "16px",
-              position: "static",
-              boxShadow: "none",
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography
-                variant="h2"
-                className="section-title"
-                style={{ fontSize: "24px" }}
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {jsonDataBloodPanel && (
-                    <CheckBoxIcon
-                      sx={{ color: "#03c8a8", marginRight: "20px" }}
-                    />
-                  )}
-                  Blood Panel Test
-                </span>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {!jsonDataBloodPanel && (
-                <JsonFileInput onFileChange={handleFileChangeBloodPanel} />
-              )}
-
-              {jsonDataBloodPanel &&
-                Object.keys(jsonDataBloodPanel).map((section) =>
-                  renderAccordionBloodPanel(section, jsonDataBloodPanel)
-                )}
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion
-            style={{
-              border: "1px solid #03c8a8",
+              border: `1px solid ${!true ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"}`,
               borderRadius: "8px",
               marginBottom: "16px",
               position: "static",
@@ -560,15 +669,34 @@ const LeftAccordionCategories = ({
                     alignItems: "center",
                   }}
                 >
-                  {/* <CheckBoxIcon
-                    sx={{ color: "#03c8a8", marginRight: "20px" }}
-                  /> */}
-                  User Info
+                  {/* {jsonDataPharmacogenetics && (
+                    <CheckBoxIcon
+                      sx={{ color: "#03c8a8", marginRight: "20px" }}
+                    />
+                  )} */}
+                  Sleep Data
                 </span>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <p>This is some text</p>
+              <Typography
+                className="explanation"
+                style={{ marginBottom: "20px" }}
+              ></Typography>
+              {/* {!jsonDataPharmacogenetics && (
+                <JsonFileInput
+                  onFileChange={handleFileChangePharmacogenetics}
+                />
+              )}
+
+              {jsonDataPharmacogenetics &&
+                Object.keys(jsonDataPharmacogenetics).map((section) =>
+                  renderAccordionPharmacogenetics(section)
+                )} */}
+
+              <p>nothing</p>
+
+              {/* <RegularButton /> */}
             </AccordionDetails>
           </Accordion>
         </React.Fragment>
