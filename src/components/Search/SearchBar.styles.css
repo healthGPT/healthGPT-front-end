@@ -1,4 +1,4 @@
-.main-searchbar-container {
+/* .main-searchbar-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -14,7 +14,23 @@
     border-radius: 8px;
     border: .5px solid rgba(128, 128, 128, 0.25);
     box-shadow: rgb(0 0 0 / 8%) 0px 6px 22px 0px, rgb(0 0 0 / 4%) 0px 1px 6px 0px;
+} */
+
+.main-searchbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 50%; /* Position the element in the center horizontally */
+    bottom: 25px; /* Keep it 25px above the bottom */
+    transform: translateX(-50%); /* Offset the element to the left by half its width to ensure it's centered */
+    background-color: transparent;
+    /* border-radius: 8px; */
+    /* border: .5px solid rgba(128, 128, 128, 0.25); */
+    box-shadow: rgb(0 0 0 / 8%) 0px 6px 22px 0px, rgb(0 0 0 / 4%) 0px 1px 6px 0px;
 }
+
 
 .half-line {
     width: 100%;

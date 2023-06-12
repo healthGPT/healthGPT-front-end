@@ -1,12 +1,17 @@
 .right-component-wrapper {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 .right-side-view-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .select-searchbar-wrapper {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.scrollable-section {
+  height: 100%;
+  overflow: auto;
 }

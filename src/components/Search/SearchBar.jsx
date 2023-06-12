@@ -87,37 +87,40 @@ const SearchBar = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="main-searchbar-container">
-        <div className="upper-half-main-search-bar">
-          <input
-            className="chat-input"
-            type="text"
-            value={input}
-            placeholder="Type here"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="half-line" />
-        <div className="lower-half-main-search-bar">
-          <div className="lower-half-main-search-bar-div">
-            <button className="send-form-button">
-              <div className="btn-inside-container">
-                {/* <span className="spacer-btn-send">Send</span> */}
-                <img
-                  src="/airplane-3.png"
-                  alt="airplane"
-                  className="btn-image-send"
-                />
-              </div>
-            </button>
-          </div>
-
-          <SelectSection />
-        </div>
-      </form>
-    </>
+    <div className="main-searchbar-container">
+      <SelectSection />
+    </div>
   );
 };
 
 export default SearchBar;
+
+{
+  /* <form onSubmit={handleSubmit} className="main-searchbar-container">
+<div className="upper-half-main-search-bar">
+  <input
+    className="chat-input"
+    type="text"
+    value={input}
+    placeholder="Type here"
+    onChange={handleInputChange}
+  />
+</div>
+<div className="half-line" />
+<div className="lower-half-main-search-bar">
+  <div className="lower-half-main-search-bar-div">
+    <button className="send-form-button">
+      <div className="btn-inside-container">
+        <img
+          src="/airplane-3.png"
+          alt="airplane"
+          className="btn-image-send"
+        />
+      </div>
+    </button>
+  </div>
+
+  <SelectSection />
+</div>
+</form> */
+}

@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Chat from "./pages/Chat";
 import { SummaryContextProvider } from "./context/Summary/SummaryContext";
+import { JsonDataProvider } from "./context/UserUploads/JsonDataContext";
+import { SectionProvider } from "./context/Sections/SectionsContext";
 
 const App = () => {
   return (
@@ -11,9 +13,13 @@ const App = () => {
         <Route
           path="/"
           element={
-            <SummaryContextProvider>
-              <Home />
-            </SummaryContextProvider>
+            <JsonDataProvider>
+              <SectionProvider>
+                <SummaryContextProvider>
+                  <Home />
+                </SummaryContextProvider>
+              </SectionProvider>
+            </JsonDataProvider>
           }
         />
         <Route path="/chat" element={<Chat />} />

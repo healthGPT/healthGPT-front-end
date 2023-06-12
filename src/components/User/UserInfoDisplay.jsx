@@ -1,64 +1,45 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import "./UserInfoDisplay.styles.css";
 
 const UserInfoDisplay = ({ userInfo }) => {
   const attributeMappings = [
-    { label: "Name", key: "name" },
-    { label: "Email", key: "email" },
-    { label: "Age", key: "age" },
-    { label: "Sex", key: "sex" },
-    { label: "Height", key: "heightFeet", unit: "ft" },
-    { label: "", key: "heightInches", unit: "in" },
-    { label: "Weight", key: "weight", unit: "lbs" },
-    { label: "Job", key: "job", subKey: "job" },
+    { key: "name" },
+    { key: "age" },
+    { key: "sex" },
+    { key: "job", subKey: "job" },
+    {
+      key: ["heightFeet", "heightInches", "weight"],
+      unit: ["ft", "in", "lbs"],
+    },
+    { key: "email" },
   ];
 
   return (
     <div>
-      {attributeMappings.map(({ label, key, subKey, unit }) => {
-        if (key === "heightFeet") {
-          return (
-            <Box
-              key={key}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Typography variant="body1">
-                {label}
-                {label && ":"}
-              </Typography>
-              <Typography variant="body1">
-                {userInfo[key]} ft {userInfo.heightInches} in
-              </Typography>
-            </Box>
-          );
+      {attributeMappings.map(({ key, subKey, unit }) => {
+        let displayText = "";
+
+        if (Array.isArray(key)) {
+          displayText = `${userInfo[key[0]]}${unit[0]} ${userInfo[key[1]]}${
+            unit[1]
+          } ${userInfo[key[2]]}${unit[2]}`;
+        } else if (subKey) {
+          displayText = `${userInfo[key][subKey]}`;
+        } else {
+          displayText = `${userInfo[key]}${unit || ""}`;
         }
-        if (key === "heightInches") {
-          return null;
-        }
-        if (key === "job") {
-          return (
-            <Box
-              key={key}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Typography variant="body1">{label}:</Typography>
-              <Typography variant="body1">{userInfo[key].job}</Typography>
-            </Box>
-          );
-        }
+
         return (
           <Box
             key={key}
-            sx={{ display: "flex", justifyContent: "space-between" }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <Typography variant="body1">
-              {label}
-              {label && ":"}
-            </Typography>
-            <Typography variant="body1">
-              {subKey ? userInfo[key][subKey] : userInfo[key]}
-              {key === "weight" && unit === "lbs" && " lbs"}
-            </Typography>
+            <Typography variant="body1">{displayText.trim()}</Typography>
           </Box>
         );
       })}

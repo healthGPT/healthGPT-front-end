@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import avatarImg from "./avatar.png";
 
 // MUI
 import Accordion from "@mui/material/Accordion";
@@ -8,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Tooltip from "@mui/material/Tooltip";
+import Box from "@mui/material/Box";
 
 // GPT
 import { GPT35Turbo } from "../helper/openai";
@@ -30,12 +32,13 @@ import { isValueWithinNormalRange } from "../helper/helper";
 import "./LeftAccordionCategories.styles.css";
 import RegularButton from "../Buttons/RegularButton";
 
+import { JsonDataContext } from "../../context/UserUploads/JsonDataContext";
+import { SectionContext } from "../../context/Sections/SectionsContext";
+
 const LeftAccordionCategories = ({
-  jsonData,
   jsonDataHealthPredisposition,
   jsonDataPharmacogenetics,
   jsonDataBloodPanel,
-  handleFileChange,
   handleFileChangeHealthPredisposition,
   handleFileChangePharmacogenetics,
   handleFileChangeBloodPanel,
@@ -61,6 +64,10 @@ const LeftAccordionCategories = ({
   const [expandedPanels, setExpandedPanels] = useState({});
   const [assistantResponses, setAssistantResponses] = useState({});
   const [isLoading, setIsLoading] = useState({});
+  // Bioresonance Test
+  const { jsonData, handleFileChange } = useContext(JsonDataContext);
+
+  const { section } = useContext(SectionContext);
 
   const allergyReport = jsonData ? jsonData["Bioresonance-Test-Report"] : null;
 
@@ -351,7 +358,11 @@ const LeftAccordionCategories = ({
           <Accordion
             style={{
               border: `1px solid ${
-                userInfoForm ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+                section === "User Info"
+                  ? "blue"
+                  : userInfoForm
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
               }`,
               borderRadius: "8px",
               marginBottom: "16px",
@@ -410,8 +421,25 @@ const LeftAccordionCategories = ({
                 />
               ) : (
                 <div>
+                  <Box>
+                    <div
+                      style={{
+                        width: "100%",
+                        alignItems: "flex-end",
+                      }}
+                    >
+                      <img
+                        src={avatarImg}
+                        alt="Avatar"
+                        style={{
+                          width: "70px",
+                          height: "70px",
+                          borderRadius: "18px",
+                        }}
+                      />
+                    </div>
+                  </Box>
                   <UserInfoDisplay userInfo={userInfoForm} />
-                  <RegularButton />
                 </div>
               )}
             </AccordionDetails>
@@ -420,7 +448,11 @@ const LeftAccordionCategories = ({
           <Accordion
             style={{
               border: `1px solid ${
-                jsonDataBloodPanel ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+                section === "Blood Panel Test"
+                  ? "blue"
+                  : jsonDataBloodPanel
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
               }`,
               borderRadius: "8px",
               marginBottom: "16px",
@@ -462,14 +494,17 @@ const LeftAccordionCategories = ({
                 Object.keys(jsonDataBloodPanel).map((section) =>
                   renderAccordionBloodPanel(section, jsonDataBloodPanel)
                 )}
-              <RegularButton />
             </AccordionDetails>
           </Accordion>
 
           <Accordion
             style={{
               border: `1px solid ${
-                jsonDataHealthPredisposition ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+                section === "Health Predisposition Report"
+                  ? "blue"
+                  : jsonDataHealthPredisposition
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
               }`,
               borderRadius: "8px",
               marginBottom: "16px",
@@ -514,15 +549,17 @@ const LeftAccordionCategories = ({
               {Object.keys(jsonDataHealthPredisposition).map((section) =>
                 renderAccordionHealthPredisposition(section)
               )}
-
-              <RegularButton />
             </AccordionDetails>
           </Accordion>
 
           <Accordion
             style={{
               border: `1px solid ${
-                jsonData ? "#03c8a8" : "rgba(0, 0, 0, 0.2)"
+                section === "Bioresonace Test"
+                  ? "blue"
+                  : jsonData
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
               }`,
               borderRadius: "8px",
               marginBottom: "16px",
@@ -576,14 +613,18 @@ const LeftAccordionCategories = ({
               {Object.keys(allergyReport).map((section) =>
                 renderAccordionBioresonance(section)
               )}
-
-              <RegularButton />
             </AccordionDetails>
           </Accordion>
 
           <Accordion
             style={{
-              border: "1px solid #03c8a8",
+              border: `1px solid ${
+                section === "Pharmacognetics Report"
+                  ? "blue"
+                  : jsonDataPharmacogenetics
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
+              }`,
               borderRadius: "8px",
               marginBottom: "16px",
               position: "static",
@@ -637,10 +678,24 @@ const LeftAccordionCategories = ({
                 Object.keys(jsonDataPharmacogenetics).map((section) =>
                   renderAccordionPharmacogenetics(section)
                 )}
-
-              <RegularButton />
             </AccordionDetails>
           </Accordion>
+
+          {/* <Accordion
+            style={{
+              border: `1px solid ${
+                section === "Pharmacognetics Report"
+                  ? "blue"
+                  : jsonDataPharmacogenetics
+                  ? "#03c8a8"
+                  : "rgba(0, 0, 0, 0.2)"
+              }`,
+              borderRadius: "8px",
+              marginBottom: "16px",
+              position: "static",
+              boxShadow: "none",
+            }}
+          > */}
 
           <Accordion
             style={{

@@ -1,10 +1,7 @@
 import React, { useContext, useState } from "react";
 import { SummaryContext } from "../../context/Summary/SummaryContext";
 
-import RegularButton from "../../components/Buttons/RegularButton";
 import LeftAccordionCategories from "../../components/LeftAccordionCategories/LeftAccordionCategories";
-import PercentDot from "../../components/PercentDot/PercentDot";
-import RightCompnent from "../../components/RightComponent/RightComponent";
 import "./Home.styles.css";
 import { generateSummary } from "../../components/helper/helper";
 import { SummaryContextProvider } from "../../context/Summary/SummaryContext";
@@ -13,8 +10,13 @@ import { SectionProvider } from "../../context/Sections/SectionsContext";
 
 import RightSideView from "../../components/RightComponent/RightSideView";
 
+import { JsonDataProvider } from "../../context/UserUploads/JsonDataContext";
+
+import { JsonDataContext } from "../../context/UserUploads/JsonDataContext";
+
 const Home = () => {
   const { updateSummaryData } = useContext(SummaryContext);
+  // const { setJsonData } = useContext(JsonDataContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,10 +33,10 @@ const Home = () => {
     return localData ? JSON.parse(localData) : null;
   });
 
-  const [jsonData, setJsonData] = useState(() => {
-    const localData = localStorage.getItem("jsonData");
-    return localData ? JSON.parse(localData) : null;
-  });
+  // const [jsonData, setJsonData] = useState(() => {
+  //   const localData = localStorage.getItem("jsonData");
+  //   return localData ? JSON.parse(localData) : null;
+  // });
 
   const [jsonDataHealthPredisposition, setJsonDataHealthPredisposition] =
     useState(() => {
@@ -54,11 +56,11 @@ const Home = () => {
     return localData ? JSON.parse(localData) : null;
   });
 
-  // Bioresonence Test Report
-  const handleFileChange = (data) => {
-    localStorage.setItem("jsonData", JSON.stringify(data));
-    setJsonData(data);
-  };
+  // // Bioresonence Test Report
+  // const handleFileChange = (data) => {
+  //   localStorage.setItem("jsonData", JSON.stringify(data));
+  //   setJsonData(data);
+  // };
 
   // Health Predisposition
   const handleFileChangeHealthPredisposition = (data) => {
@@ -78,20 +80,18 @@ const Home = () => {
     setJsonDataBloodPanel(data);
   };
 
-  const handleDataUpdate = () => {
-    updateSummaryData(generateSummary(jsonData));
-  };
+  // const handleDataUpdate = () => {
+  //   updateSummaryData(generateSummary(jsonData));
+  // };
 
   return (
     <React.Fragment>
       <WholeScreen>
         <LeftSide>
           <LeftAccordionCategories
-            jsonData={jsonData}
             jsonDataHealthPredisposition={jsonDataHealthPredisposition}
             jsonDataPharmacogenetics={jsonDataPharmacogenetics}
             jsonDataBloodPanel={jsonDataBloodPanel}
-            handleFileChange={handleFileChange}
             handleFileChangeHealthPredisposition={
               handleFileChangeHealthPredisposition
             }
@@ -118,13 +118,11 @@ const Home = () => {
           />
           {/* <RegularButton handleDataUpdate={handleDataUpdate} /> */}
         </LeftSide>
-        <SectionProvider>
-          <RightSide>
-            {/* <RightCompnent /> */}
+        <RightSide>
+          {/* <RightCompnent /> */}
 
-            <RightSideView />
-          </RightSide>
-        </SectionProvider>
+          <RightSideView />
+        </RightSide>
       </WholeScreen>
     </React.Fragment>
   );

@@ -1,28 +1,26 @@
 import React, { useContext } from "react";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
 
-import {
-  SectionProvider,
-  SectionContext,
-} from "../../context/Sections/SectionsContext";
+import { SectionContext } from "../../context/Sections/SectionsContext";
 
 const SelectSection = () => {
   const { section, setSection } = useContext(SectionContext);
-
-  console.log({ section });
-
   return (
     <div className="select-searchbar-wrapper">
       <Select
         sx={{
           borderRadius: "4px",
           padding: "10px 16px",
-          height: "32px",
+          height: "42px",
+          textTransform: "uppercase",
+          fontSize: "14px",
+          fontWeight: "400",
+          border: "none",
         }}
         value={section}
         onChange={(e) => setSection(e.target.value)}
+        className="glass"
       >
         <MenuItem value="All">All</MenuItem>
         <MenuItem value="User Info">User Info</MenuItem>
