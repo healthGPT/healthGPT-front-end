@@ -9,6 +9,10 @@ import "./Home.styles.css";
 import { generateSummary } from "../../components/helper/helper";
 import { SummaryContextProvider } from "../../context/Summary/SummaryContext";
 
+import { SectionProvider } from "../../context/Sections/SectionsContext";
+
+import RightSideView from "../../components/RightComponent/RightSideView";
+
 const Home = () => {
   const { updateSummaryData } = useContext(SummaryContext);
 
@@ -114,9 +118,13 @@ const Home = () => {
           />
           {/* <RegularButton handleDataUpdate={handleDataUpdate} /> */}
         </LeftSide>
-        <RightSide>
-          <RightCompnent />
-        </RightSide>
+        <SectionProvider>
+          <RightSide>
+            {/* <RightCompnent /> */}
+
+            <RightSideView />
+          </RightSide>
+        </SectionProvider>
       </WholeScreen>
     </React.Fragment>
   );
@@ -155,6 +163,7 @@ const RightSide = ({ children }) => {
   return (
     <div
       style={{
+        position: "relative",
         width: "60%",
         backgroundColor: "white",
         overflow: "auto",

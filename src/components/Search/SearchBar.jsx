@@ -5,12 +5,13 @@ import { mockAPICall } from "../../context/Chat/ChatActions";
 import { fetchCompletionOpenAI } from "../helper/openai";
 
 import { Configuration, OpenAIApi } from "openai";
+import SelectSection from "../RightComponent/SelectSection";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
 
-  const { addUserMessage, addBotMessage } = useContext(ChatContext);
+  // const { addUserMessage, addBotMessage } = useContext(ChatContext);
 
   const openai = new OpenAIApi(
     new Configuration({
@@ -111,6 +112,8 @@ const SearchBar = () => {
               </div>
             </button>
           </div>
+
+          <SelectSection />
         </div>
       </form>
     </>

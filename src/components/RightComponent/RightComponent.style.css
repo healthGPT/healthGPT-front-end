@@ -1,3 +1,12 @@
 .right-component-wrapper {
     padding: 10px 20px;
 }
+
+.right-side-view-wrapper {
+    position: relative;
+}
+
+.select-searchbar-wrapper {
+display: flex;
+align-items: center;
+}
