@@ -12,16 +12,22 @@ import { UserInfoPrompt } from "../helper/prompts/prompts";
 
 import { GptContext } from "../../context/GPT/gptContextProvider";
 
+import { LoadingContext } from "../../context/LoadingContext/LoadingContext";
+
+import { useLoading } from "../../context/LoadingContext/LoadingContext";
+
 import { jobsData } from "./jobs";
 
 const UserInfoForm = () => {
   const { addInput, setGptResponse, saveResponse } = useContext(GptContext);
   const { setUserInfoForm, formState, setFormState } =
     useContext(JsonDataContext);
+  const { setIsLoading } = useContext(LoadingContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setIsLoading(true);
       const selectedJob = jobsData.find(
         (jobObj) => jobObj.job === formState.job
       );
@@ -47,6 +53,7 @@ const UserInfoForm = () => {
 
       setGptResponse(gptResponse);
 
+      setIsLoading(false);
       setFormState({
         name: "",
         age: "",

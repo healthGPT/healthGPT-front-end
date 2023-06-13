@@ -14,6 +14,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+import CoolLoadingSpinner from "../Spinner/CoolLoadingSpinner";
+
+import { useLoading } from "../../context/LoadingContext/LoadingContext";
+import { LoadingContext } from "../../context/LoadingContext/LoadingContext";
+
 // import RenderParagraphsResponse from "../helper/RenderParagraphs/renderParagraphs";
 
 import RenderParagraphsResponse from "../helper/RenderParagraphs";
@@ -81,81 +86,90 @@ export default RightSideView;
 
 const UserInfo = () => {
   const { context, responses } = useContext(GptContext);
+  const { isLoading } = useContext(LoadingContext);
+
+  console.log(responses);
 
   return (
     <div className="scrollable-section" style={{ color: "white" }}>
-      <Typography variant="h2" component="h1">
-        User Info Section
-      </Typography>
-      <Box mt={2}>
-        {context.map((text, index) => (
-          <Typography variant="body1" key={index}>
-            {text}
-          </Typography>
-        ))}
-      </Box>
-
-      <Box mt={4}>
-        {responses.map((response, index) => (
-          <RenderParagraphsResponse key={index} data={response} />
-        ))}
-      </Box>
-
-      {responses && (
-        <Box mt={4}>
-          <Typography
-            variant="h4"
-            component="h3"
-            color="white"
-            style={{ fontWeight: 300 }}
-          >
-            Further Action Suggestions:
+      {isLoading ? (
+        <CoolLoadingSpinner />
+      ) : (
+        <React.Fragment>
+          <Typography variant="h2" component="h1">
+            User Info Section
           </Typography>
           <Box mt={2}>
-            {/* if software engineer render this */}
-            {/* good opportunity to incorporate other services here */}
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(3, 200, 168)",
-                color: "#ffffff",
-                marginRight: "5px",
-              }}
-            >
-              Yoga
-            </Button>
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(3, 200, 168)",
-                color: "#ffffff",
-                marginRight: "5px",
-              }}
-            >
-              Running plan
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(3, 200, 168)",
-                color: "#ffffff",
-                marginRight: "5px",
-              }}
-            >
-              Workout routine
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: "rgb(3, 200, 168)", color: "#ffffff" }}
-            >
-              Diet Plan
-            </Button>
-            {/* <Button style={{ marginLeft: "10px" }} variant="contained">
-              Action 2
-            </Button> */}
+            {context.map((text, index) => (
+              <Typography variant="body1" key={index}>
+                {text}
+              </Typography>
+            ))}
           </Box>
-        </Box>
+
+          <Box mt={4}>
+            {responses.map((response, index) => (
+              <RenderParagraphsResponse key={index} data={response} />
+            ))}
+          </Box>
+
+          {responses.length > 0 && (
+            <Box mt={4}>
+              <Typography
+                variant="h4"
+                component="h3"
+                color="white"
+                style={{ fontWeight: 300 }}
+              >
+                Further Action Suggestions:
+              </Typography>
+              <Box mt={2}>
+                {/* if software engineer render this */}
+                {/* good opportunity to incorporate other services here */}
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "rgb(3, 200, 168)",
+                    color: "#ffffff",
+                    marginRight: "5px",
+                  }}
+                >
+                  Yoga
+                </Button>
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "rgb(3, 200, 168)",
+                    color: "#ffffff",
+                    marginRight: "5px",
+                  }}
+                >
+                  Running plan
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "rgb(3, 200, 168)",
+                    color: "#ffffff",
+                    marginRight: "5px",
+                  }}
+                >
+                  Workout routine
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "rgb(3, 200, 168)", color: "#ffffff" }}
+                >
+                  Diet Plan
+                </Button>
+                {/* <Button style={{ marginLeft: "10px" }} variant="contained">
+                    Action 2
+                  </Button> */}
+              </Box>
+            </Box>
+          )}
+        </React.Fragment>
       )}
     </div>
   );
