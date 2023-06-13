@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import { JsonDataContext } from "../../context/UserUploads/JsonDataContext";
 import SearchBar from "../Search/SearchBar";
+
+import RegularButton from "../Buttons/RegularButton";
+
 import "./RightComponent.style.css";
 
 import { GptContext } from "../../context/GPT/gptContextProvider";
 
 import { SectionContext } from "../../context/Sections/SectionsContext";
+
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 // import RenderParagraphsResponse from "../helper/RenderParagraphs/renderParagraphs";
 
@@ -44,20 +51,112 @@ const RightSideView = () => {
 
 export default RightSideView;
 
+// const UserInfo = () => {
+//   const { context, responses } = useContext(GptContext);
+//   return (
+//     <div
+//       className="scrollable-section"
+//       style={{ color: "white", paddingTop: "20px" }}
+//     >
+//       <div>
+//         {context.map((text, index) => (
+//           <p key={index}>{text}</p>
+//         ))}
+
+//         {responses.map((response, index) => (
+//           <RenderParagraphsResponse key={index} data={response} />
+//         ))}
+
+//         {responses && (
+//           <div>
+//             <p>Further actions suggestions</p>
+//             <RegularButton />
+//             <RegularButton />
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
 const UserInfo = () => {
   const { context, responses } = useContext(GptContext);
+
   return (
     <div className="scrollable-section" style={{ color: "white" }}>
-      <h1>user info section</h1>
-      <div>
+      <Typography variant="h2" component="h1">
+        User Info Section
+      </Typography>
+      <Box mt={2}>
         {context.map((text, index) => (
-          <p key={index}>{text}</p>
+          <Typography variant="body1" key={index}>
+            {text}
+          </Typography>
         ))}
+      </Box>
 
+      <Box mt={4}>
         {responses.map((response, index) => (
           <RenderParagraphsResponse key={index} data={response} />
         ))}
-      </div>
+      </Box>
+
+      {responses && (
+        <Box mt={4}>
+          <Typography
+            variant="h4"
+            component="h3"
+            color="white"
+            style={{ fontWeight: 300 }}
+          >
+            Further Action Suggestions:
+          </Typography>
+          <Box mt={2}>
+            {/* if software engineer render this */}
+            {/* good opportunity to incorporate other services here */}
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "rgb(3, 200, 168)",
+                color: "#ffffff",
+                marginRight: "5px",
+              }}
+            >
+              Yoga
+            </Button>
+
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "rgb(3, 200, 168)",
+                color: "#ffffff",
+                marginRight: "5px",
+              }}
+            >
+              Running plan
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "rgb(3, 200, 168)",
+                color: "#ffffff",
+                marginRight: "5px",
+              }}
+            >
+              Workout routine
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "rgb(3, 200, 168)", color: "#ffffff" }}
+            >
+              Diet Plan
+            </Button>
+            {/* <Button style={{ marginLeft: "10px" }} variant="contained">
+              Action 2
+            </Button> */}
+          </Box>
+        </Box>
+      )}
     </div>
   );
 };
