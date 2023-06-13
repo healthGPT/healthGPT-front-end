@@ -17,6 +17,7 @@ const SelectSection = () => {
           fontSize: "14px",
           fontWeight: "400",
           border: "none",
+          color: "white",
         }}
         value={section}
         onChange={(e) => setSection(e.target.value)}

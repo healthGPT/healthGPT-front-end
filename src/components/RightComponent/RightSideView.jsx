@@ -40,7 +40,7 @@ export default RightSideView;
 
 const UserInfo = () => {
   return (
-    <div className="scrollable-section">
+    <div className="scrollable-section" style={{ color: "white" }}>
       <h1>user info section</h1>
       <h1>user info section</h1>
       <h1>user info section</h1>
@@ -82,9 +82,13 @@ const BloodPanel = () => {
 };
 
 const HealthPredisposition = () => {
+  const { jsonDataHealthPredisposition } = useContext(JsonDataContext);
   return (
-    <div className="scrollable-section">
+    <div className="scrollable-section" style={{ color: "white" }}>
       <h1>Health Predisposition</h1>
+      {jsonDataHealthPredisposition && (
+        <pre>{JSON.stringify(jsonDataHealthPredisposition, null, 2)}</pre>
+      )}
     </div>
   );
 };
