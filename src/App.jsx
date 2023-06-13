@@ -5,6 +5,7 @@ import Chat from "./pages/Chat";
 import { SummaryContextProvider } from "./context/Summary/SummaryContext";
 import { JsonDataProvider } from "./context/UserUploads/JsonDataContext";
 import { SectionProvider } from "./context/Sections/SectionsContext";
+import { GptContextProvider } from "./context/GPT/gptContextProvider";
 
 const App = () => {
   return (
@@ -13,13 +14,15 @@ const App = () => {
         <Route
           path="/"
           element={
-            <JsonDataProvider>
-              <SectionProvider>
-                <SummaryContextProvider>
-                  <Home />
-                </SummaryContextProvider>
-              </SectionProvider>
-            </JsonDataProvider>
+            <GptContextProvider>
+              <JsonDataProvider>
+                <SectionProvider>
+                  <SummaryContextProvider>
+                    <Home />
+                  </SummaryContextProvider>
+                </SectionProvider>
+              </JsonDataProvider>
+            </GptContextProvider>
           }
         />
         <Route path="/chat" element={<Chat />} />

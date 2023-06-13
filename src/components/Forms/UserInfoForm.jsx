@@ -7,40 +7,60 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 
+import { GPT35Turbo } from "../helper/openai";
+import { UserInfoPrompt } from "../helper/prompts/prompts";
+
+import { GptContext } from "../../context/GPT/gptContextProvider";
+
 import { jobsData } from "./jobs";
 
 const UserInfoForm = () => {
+  const { addInput, setGptResponse, saveResponse } = useContext(GptContext);
   const { setUserInfoForm, formState, setFormState } =
     useContext(JsonDataContext);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const selectedJob = jobsData.find((jobObj) => jobObj.job === formState.job);
-    const UserInfoFormData = {
-      name: formState.name,
-      age: formState.age,
-      sex: formState.sex,
-      heightFeet: formState.heightFeet,
-      heightInches: formState.heightInches,
-      weight: formState.weight,
-      email: formState.email,
-      job: selectedJob,
-    };
+    try {
+      const selectedJob = jobsData.find(
+        (jobObj) => jobObj.job === formState.job
+      );
+      const UserInfoFormData = {
+        name: formState.name,
+        age: formState.age,
+        sex: formState.sex,
+        heightFeet: formState.heightFeet,
+        heightInches: formState.heightInches,
+        weight: formState.weight,
+        email: formState.email,
+        job: selectedJob,
+      };
 
-    localStorage.setItem("UserInfoForm", JSON.stringify(UserInfoFormData));
+      localStorage.setItem("UserInfoForm", JSON.stringify(UserInfoFormData));
 
-    setUserInfoForm(UserInfoFormData);
+      setUserInfoForm(UserInfoFormData);
 
-    setFormState({
-      name: "",
-      age: "",
-      sex: "",
-      heightFeet: "",
-      heightInches: "",
-      weight: "",
-      email: "",
-      job: "",
-    });
+      // call GPT here
+      const gptResponse = await GPT35Turbo(UserInfoPrompt(UserInfoFormData));
+      console.log("user info prompt", UserInfoPrompt(UserInfoFormData));
+      console.log("gpt response", gptResponse);
+
+      setGptResponse(gptResponse);
+
+      setFormState({
+        name: "",
+        age: "",
+        sex: "",
+        heightFeet: "",
+        heightInches: "",
+        weight: "",
+        email: "",
+        job: "",
+      });
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // handle the error here
+    }
   };
 
   const createChangeHandler = (field) => (event) => {

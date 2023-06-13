@@ -3,7 +3,13 @@ import { JsonDataContext } from "../../context/UserUploads/JsonDataContext";
 import SearchBar from "../Search/SearchBar";
 import "./RightComponent.style.css";
 
+import { GptContext } from "../../context/GPT/gptContextProvider";
+
 import { SectionContext } from "../../context/Sections/SectionsContext";
+
+// import RenderParagraphsResponse from "../helper/RenderParagraphs/renderParagraphs";
+
+import RenderParagraphsResponse from "../helper/RenderParagraphs";
 
 const RightSideView = () => {
   const { section } = useContext(SectionContext);
@@ -39,36 +45,19 @@ const RightSideView = () => {
 export default RightSideView;
 
 const UserInfo = () => {
+  const { context, responses } = useContext(GptContext);
   return (
     <div className="scrollable-section" style={{ color: "white" }}>
       <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
-      <h1>user info section</h1>
+      <div>
+        {context.map((text, index) => (
+          <p key={index}>{text}</p>
+        ))}
+
+        {responses.map((response, index) => (
+          <RenderParagraphsResponse key={index} data={response} />
+        ))}
+      </div>
     </div>
   );
 };
@@ -95,7 +84,6 @@ const HealthPredisposition = () => {
 
 const BioresonaceTest = () => {
   const { jsonData } = useContext(JsonDataContext);
-  console.log(jsonData);
   return (
     <div className="scrollable-section">
       <h1>Bioresonance test</h1>

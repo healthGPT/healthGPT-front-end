@@ -18,7 +18,6 @@ export const JsonDataProvider = ({ children }) => {
 
   const [jsonData, setJsonData] = useState(() => {
     const localData = localStorage.getItem("jsonData");
-    console.log(localData);
     return localData ? JSON.parse(localData) : null;
   });
 
