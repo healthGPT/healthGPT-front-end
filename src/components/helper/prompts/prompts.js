@@ -110,6 +110,28 @@ export const UserInfoPrompt = (value) => {
   return healthData;
 };
 
+export const generateRunningPlan = (value) => {
+    // switch statement that returns based on the section passed in
+  
+    const GPT35TurboMessageMetalSensitivities = [
+      {
+        role: "system",
+        content: `You are an expert in running, a long distance running/wellbeing coach`,
+      },
+      {
+        role: "user",
+        content: `come up with a weekly running plan for this person: ${value}`,
+      },
+      {
+        role: "assistant",
+        //
+        content: `Consider all user data provided here and make the best recommendation: ${value}`,
+      },
+    ];
+  
+    return GPT35TurboMessageMetalSensitivities;
+  };
+
 // const GPT35TurboMessageMetalSensitivities = [
 //     { role: "system", content: `You are an expert on ${section} in human beings.` },
 

@@ -23,7 +23,6 @@ const SelectSection = () => {
         onChange={(e) => setSection(e.target.value)}
         className="glass"
       >
-        <MenuItem value="All">All</MenuItem>
         <MenuItem value="User Info">User Info</MenuItem>
         <MenuItem value="Blood Panel Test">Blood Panel Test</MenuItem>
         <MenuItem value="Health Predisposition Report">

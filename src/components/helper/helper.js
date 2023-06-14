@@ -128,6 +128,11 @@ export const getNormalRange = (panelName, testName) => {
     // Check if value is within the normal range
     return min !== undefined && max !== undefined && value >= min && value <= max;
   };
+
+export const getRandomNumber = () => {
+    return Math.floor(Math.random() * 16) + 1;
+  }
+  
   
   
 
