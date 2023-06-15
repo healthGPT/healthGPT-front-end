@@ -13,13 +13,14 @@ const FlowDetails = ({ data }) => {
               fontWeight: "600",
               textTransform: "uppercase",
               color: "white",
+              marginTop: "50px",
             }}
           >
             {data.sequence_name}
           </h3>
-          <p className="flow-description" style={{ color: "white" }}>
+          {/* <p className="flow-description" style={{ color: "white" }}>
             {data.description}
-          </p>
+          </p> */}
         </div>
       </Grid>
 

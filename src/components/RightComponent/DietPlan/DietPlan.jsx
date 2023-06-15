@@ -1,8 +1,8 @@
 import DietSelection from "./DietSelection";
-import "./DietPlan.styles.css";
-
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Container from "@mui/material/Container";
 
 import React, { useContext } from "react";
 import { GptContext } from "../../../context/GPT/gptContextProvider";
@@ -23,74 +23,42 @@ const DietPlan = ({ handleDietPlanSearch }) => {
   }
 
   return (
-    <div className="diet-plan-wrapper">
+    <Container maxWidth="md">
       {!dietResponses ? (
         <>
           <Typography
             variant="h5"
-            style={{
-              fontWeight: "600",
-              textTransform: "uppercase",
-              color: "white",
-            }}
+            style={{ fontWeight: "600", color: "white" }}
           >
             Diet Plan
           </Typography>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <DietSelection />
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(3, 200, 168)",
-                color: "#ffffff",
-                marginRight: "5px",
-                width: "90px",
-              }}
-              onClick={handleDietPlanSearch}
-            >
-              Submit
-            </Button>
-          </div>
+          {/* Your form component for diet selection */}
+          <DietSelection handleDietPlanSearch={handleDietPlanSearch} />
         </>
       ) : (
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "10px",
-            borderRadius: "4px",
-          }}
-        >
-          <Typography variant="h6" style={{ marginBottom: "10px" }}>
+        <>
+          <Typography variant="h4">
             {convertToProperWord(diet.dietPlan.restriction)} Weekly Diet Plan
           </Typography>
 
           {diet.dietPlan.meals.map((meal, index) => (
-            <div key={index} style={{ marginBottom: "10px" }}>
-              <Typography
-                variant="subtitle1"
-                style={{ marginBottom: "5px", fontWeight: "bold" }}
-              >
-                {meal.day}
-              </Typography>
-              {meal.mealItems.map((item, itemIndex) => (
-                <Typography variant="body1" key={itemIndex}>
-                  {item}
-                </Typography>
-              ))}
-            </div>
+            <Card
+              key={index}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+            >
+              <CardContent>
+                <Typography variant="h5">{meal.day}</Typography>
+                {meal.mealItems.map((item, itemIndex) => (
+                  <Typography variant="body1" key={itemIndex}>
+                    {item}
+                  </Typography>
+                ))}
+              </CardContent>
+            </Card>
           ))}
-        </div>
+        </>
       )}
-    </div>
+    </Container>
   );
 };
 

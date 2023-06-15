@@ -18,6 +18,11 @@ const GptContextProvider = ({ children }) => {
     return localData ? JSON.parse(localData) : null;
   });
 
+  const [runningResponses, setRunningResponses] = useState(() => {
+    const localData = localStorage.getItem("gptRuningResponses");
+    return localData ? JSON.parse(localData) : null;
+  });
+
   const addInput = (inputText) => {
     setContext((prevContext) => [...prevContext, inputText]);
   };
@@ -52,6 +57,13 @@ const GptContextProvider = ({ children }) => {
     localStorage.setItem("gptDietResponses", JSON.stringify(dietResponses));
   }, [dietResponses]);
 
+  useEffect(() => {
+    localStorage.setItem(
+      "gptRuningResponses",
+      JSON.stringify(runningResponses)
+    );
+  }, [runningResponses]);
+
   return (
     <GptContext.Provider
       value={{
@@ -64,6 +76,8 @@ const GptContextProvider = ({ children }) => {
         setDietResponses,
         selectedDiet,
         setSelectedDiet,
+        runningResponses,
+        setRunningResponses,
       }}
     >
       {children}

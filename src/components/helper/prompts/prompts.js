@@ -110,30 +110,6 @@ export const UserInfoPrompt = (value) => {
   return healthData;
 };
 
-export const generateRunningPlan = (value) => {
-    // switch statement that returns based on the section passed in
-  
-    const GPT35TurboMessageMetalSensitivities = [
-      {
-        role: "system",
-        content: `You are an expert in running, a long distance running/wellbeing coach`,
-      },
-      {
-        role: "user",
-        content: `come up with a weekly running plan for this person: ${value}`,
-      },
-      {
-        role: "assistant",
-        //
-        content: `Consider all user data provided here and make the best recommendation: ${value}`,
-      },
-    ];
-  
-    console.log(GPT35TurboMessageMetalSensitivities)
-    return GPT35TurboMessageMetalSensitivities;
-  };
-
-
   export const generateDietPrompt = (userInfo, diet) => {
 
     const generateDietPromptGPT = [
@@ -221,6 +197,66 @@ export const generateRunningPlan = (value) => {
   
     return generateDietPromptGPT;
   };
+
+
+  export const generateRunningPlan = (userInfo) => {
+    // switch statement that returns based on the section passed in
+  
+    const generateRunningPlanGPT = [
+      {
+        role: "user",
+        content: `Make a running workout plan for this person: ${userInfo}`,
+      },
+      {
+        role: "user",
+        content: `Make it into a json object, with Monday through Sunday, here’s a good example: {
+            "description": “…”,
+            "running": {
+                "Monday": {
+                    "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Tuesday": {
+                     "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Wednesday": {
+                   "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Thursday": {
+                    "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Friday": {
+                    "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Saturday": {
+                     "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                },
+                "Sunday": {
+                    "workoutType": “…”,
+                    "description": “…”,
+                    "distance": “…”
+                }
+            },
+            "notes": “…”
+        } `,
+      },
+
+    ];
+  
+    return generateRunningPlanGPT
+  };
+
 
 // const GPT35TurboMessageMetalSensitivities = [
 //     { role: "system", content: `You are an expert on ${section} in human beings.` },

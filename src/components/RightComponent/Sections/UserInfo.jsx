@@ -19,6 +19,7 @@ import { generateDietPrompt } from "../../helper/prompts/prompts";
 
 import ReloadIcon from "./reload.png";
 import DietPlan from "../DietPlan/DietPlan";
+import RunningPlan from "../RunningPlan/RunningPlan";
 
 const UserInfo = () => {
   const {
@@ -28,6 +29,8 @@ const UserInfo = () => {
     setDietResponses,
     selectedDiet,
     setSelectedDiet,
+    runningResponses,
+    setRunningResponses,
   } = useContext(GptContext);
   const { isLoading } = useContext(LoadingContext);
   const userInfoForm = localStorage.getItem("UserInfoForm");
@@ -97,16 +100,18 @@ const UserInfo = () => {
   };
 
   const handleDietPlanSearch = async () => {
-    // console.log({ userInfoForm });
-    // console.log({ selectedDiet });
     const gptResponse = await GPT35Turbo(
       generateDietPrompt(userInfoForm, selectedDiet)
     );
-    console.log({ gptResponse });
     setDietResponses(gptResponse);
     localStorage.setItem("gptDietResponses", JSON.stringify(gptResponse));
   };
 
+  const handleRunningPlan = async () => {
+    const gptResponse = await GPT35Turbo(generateRunningPlan(userInfoForm));
+    setRunningResponses(gptResponse);
+    localStorage.setItem("gptRuningResponses", JSON.stringify(gptResponse));
+  };
   // console.log(dietResponses);
 
   return (
@@ -178,16 +183,21 @@ const UserInfo = () => {
             <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
           )}
 
+          {runningResponses && <RunningPlan />}
+
           {responses.length > 0 && (
             <Box mt={4} style={{ marginBottom: "80px" }}>
-              <Typography
-                variant="h4"
-                component="h3"
-                color="white"
-                style={{ fontWeight: 300 }}
-              >
-                Further Action Suggestions:
-              </Typography>
+              {/* add !runningPlan */}
+              {!workout && !yoga && !dietPlanState && !runningResponses && (
+                <Typography
+                  variant="h4"
+                  component="h3"
+                  color="white"
+                  style={{ fontWeight: 300 }}
+                >
+                  Further Action Suggestions:
+                </Typography>
+              )}
               <Box mt={2}>
                 {/* if software engineer render this */}
                 {/* good opportunity to incorporate other services here */}
@@ -205,16 +215,19 @@ const UserInfo = () => {
                   </Button>
                 )}
 
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "rgb(3, 200, 168)",
-                    color: "#ffffff",
-                    marginRight: "5px",
-                  }}
-                >
-                  Running plan
-                </Button>
+                {!runningResponses && (
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "rgb(3, 200, 168)",
+                      color: "#ffffff",
+                      marginRight: "5px",
+                    }}
+                    onClick={handleRunningPlan}
+                  >
+                    Running plan
+                  </Button>
+                )}
 
                 {!workout && (
                   <Button
