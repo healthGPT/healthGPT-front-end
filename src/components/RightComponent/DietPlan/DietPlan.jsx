@@ -8,6 +8,7 @@ import React, { useContext } from "react";
 import { GptContext } from "../../../context/GPT/gptContextProvider";
 
 import { convertToProperWord } from "../../helper/ConvertToProperWord";
+import Button from "@mui/material/Button";
 
 const DietPlan = ({ handleDietPlanSearch }) => {
   const { dietResponses } = useContext(GptContext);
@@ -23,7 +24,7 @@ const DietPlan = ({ handleDietPlanSearch }) => {
   }
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" xs={{ marginTop: "100px" }}>
       {!dietResponses ? (
         <>
           <Typography
@@ -34,6 +35,18 @@ const DietPlan = ({ handleDietPlanSearch }) => {
           </Typography>
           {/* Your form component for diet selection */}
           <DietSelection handleDietPlanSearch={handleDietPlanSearch} />
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "rgb(3, 200, 168)",
+              color: "#ffffff",
+              marginRight: "5px",
+            }}
+            onClick={handleDietPlanSearch}
+          >
+            search
+          </Button>
         </>
       ) : (
         <>

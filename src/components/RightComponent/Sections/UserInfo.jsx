@@ -21,6 +21,8 @@ import ReloadIcon from "./reload.png";
 import DietPlan from "../DietPlan/DietPlan";
 import RunningPlan from "../RunningPlan/RunningPlan";
 
+import gptLogo from "./gpt-logo.png";
+
 const UserInfo = () => {
   const {
     context,
@@ -32,7 +34,7 @@ const UserInfo = () => {
     runningResponses,
     setRunningResponses,
   } = useContext(GptContext);
-  const { isLoading } = useContext(LoadingContext);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
   const userInfoForm = localStorage.getItem("UserInfoForm");
 
   const [yoga, setYoga] = useState(() => {
@@ -100,29 +102,40 @@ const UserInfo = () => {
   };
 
   const handleDietPlanSearch = async () => {
-    const gptResponse = await GPT35Turbo(
-      generateDietPrompt(userInfoForm, selectedDiet)
-    );
-    setDietResponses(gptResponse);
-    localStorage.setItem("gptDietResponses", JSON.stringify(gptResponse));
+    try {
+      setIsLoading(true);
+      const gptResponse = await GPT35Turbo(
+        generateDietPrompt(userInfoForm, selectedDiet)
+      );
+      setDietResponses(gptResponse);
+      localStorage.setItem("gptDietResponses", JSON.stringify(gptResponse));
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleRunningPlan = async () => {
-    const gptResponse = await GPT35Turbo(generateRunningPlan(userInfoForm));
-    setRunningResponses(gptResponse);
-    localStorage.setItem("gptRuningResponses", JSON.stringify(gptResponse));
+    try {
+      setIsLoading(true);
+      const gptResponse = await GPT35Turbo(generateRunningPlan(userInfoForm));
+      setRunningResponses(gptResponse);
+      localStorage.setItem("gptRuningResponses", JSON.stringify(gptResponse));
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  // console.log(dietResponses);
 
   return (
-    <div className="scrollable-section" style={{ color: "white" }}>
+    <div className="scrollable-section">
       {isLoading ? (
         <CoolLoadingSpinner />
       ) : (
         <React.Fragment>
-          <Typography variant="h2" component="h1">
+          {/* <Typography variant="h2" component="h1">
             User Info Section
-          </Typography>
+          </Typography> */}
           <Box mt={2}>
             {context.map((text, index) => (
               <Typography variant="body1" key={index}>
@@ -131,21 +144,46 @@ const UserInfo = () => {
             ))}
           </Box>
 
-          <Box mt={4}>
-            {responses.map((response, index) => (
-              <RenderParagraphsResponse key={index} data={response} />
-            ))}
-          </Box>
+          <div
+            style={{
+              width: "90%",
+              margin: "50px auto 0px auto",
+              // backgroundColor: "white",
+              // padding: "40px",
+              borderRadius: "10px",
+            }}
+          >
+            <div style={{ width: "100%", margin: "0 auto" }}>
+              <div>
+                <img src={gptLogo} alt="gpt-logo" style={{ width: "40px" }} />
+                <h4
+                  style={{
+                    marginBottom: "40px",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                    color: "rgb(51, 51, 51)",
+                  }}
+                >
+                  HealthGPT suggestions based on your user info
+                </h4>
+              </div>
+
+              {responses.map((response, index) => (
+                <RenderParagraphsResponse key={index} data={response} />
+              ))}
+            </div>
+          </div>
 
           {yoga && (
-            <div style={{ padding: "0 30px" }}>
+            <div style={{ padding: "50px 30px" }}>
               <FlowDetails data={yoga} />
               <Button
                 variant="contained"
                 sx={{
                   backgroundColor: "rgb(3, 200, 168)",
                   color: "#ffffff",
-                  marginRight: "5px",
+                  // marginRight: "5px",
+                  marginTop: "10px",
                 }}
                 onClick={handleYogaClick}
               >
@@ -157,6 +195,11 @@ const UserInfo = () => {
               </Button>
             </div>
           )}
+          {dietPlanState && (
+            <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
+          )}
+
+          {runningResponses && <RunningPlan />}
 
           {workout && (
             <div style={{ padding: "0 30px" }}>
@@ -178,12 +221,6 @@ const UserInfo = () => {
               </Button>
             </div>
           )}
-
-          {dietPlanState && (
-            <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
-          )}
-
-          {runningResponses && <RunningPlan />}
 
           {responses.length > 0 && (
             <Box mt={4} style={{ marginBottom: "80px" }}>

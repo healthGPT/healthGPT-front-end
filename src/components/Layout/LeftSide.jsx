@@ -6,6 +6,7 @@ const LeftSide = ({ children }) => {
         overflow: "auto",
         padding: "10px",
         position: "relative",
+        backgroundColor: "white",
       }}
     >
       {children}

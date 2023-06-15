@@ -8,12 +8,15 @@ const RenderParagraphsResponse = ({ data }) => {
 
   // Render each paragraph with a hyphen
   const renderedParagraphs = paragraphsToRender.map((paragraph, index) => (
-    <p style={{ textAlign: "left", fontSize: "16px" }} key={index}>
+    <p
+      style={{ textAlign: "left", fontSize: "16px", marginBottom: "30px" }}
+      key={index}
+    >
       {paragraph}
     </p>
   ));
 
-  return <div style={{ padding: "0 30px" }}>{renderedParagraphs}</div>; // Render the paragraphs within a div container
+  return <div>{renderedParagraphs}</div>; // Render the paragraphs within a div container
 };
 
 export default RenderParagraphsResponse;
