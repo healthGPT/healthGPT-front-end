@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GptContext } from "../../../context/GPT/gptContextProvider";
 import { LoadingContext } from "../../../context/LoadingContext/LoadingContext";
 import CoolLoadingSpinner from "../../Spinner/CoolLoadingSpinner";
@@ -15,16 +15,30 @@ import Button from "@mui/material/Button";
 
 import { GPT35Turbo } from "../../helper/openai";
 import { generateRunningPlan } from "../../helper/prompts/prompts";
+import { generateDietPrompt } from "../../helper/prompts/prompts";
 
 import ReloadIcon from "./reload.png";
+import DietPlan from "../DietPlan/DietPlan";
 
 const UserInfo = () => {
-  const { context, responses } = useContext(GptContext);
+  const {
+    context,
+    responses,
+    dietResponses,
+    setDietResponses,
+    selectedDiet,
+    setSelectedDiet,
+  } = useContext(GptContext);
   const { isLoading } = useContext(LoadingContext);
   const userInfoForm = localStorage.getItem("UserInfoForm");
 
   const [yoga, setYoga] = useState(() => {
     const localData = localStorage.getItem("yoga");
+    return localData ? JSON.parse(localData) : null;
+  });
+
+  const [dietPlanState, setDietPlanState] = useState(() => {
+    const localData = localStorage.getItem("dietPlanState");
     return localData ? JSON.parse(localData) : null;
   });
 
@@ -37,6 +51,10 @@ const UserInfo = () => {
     const localData = localStorage.getItem("diet");
     return localData ? JSON.parse(localData) : null;
   });
+
+  useEffect(() => {
+    localStorage.setItem("dietPlanState", JSON.stringify(dietPlanState));
+  }, [dietPlanState]);
 
   const handleYogaClick = async () => {
     const randomNumber = getRandomNumber();
@@ -75,11 +93,21 @@ const UserInfo = () => {
   };
 
   const handleDietPlan = async () => {
-    const gptResponse = await GPT35Turbo(generateRunningPlan(userInfoForm));
-    setDietPlan(RenderParagraphsResponse(gptResponse));
+    setDietPlanState(true);
   };
 
-  console.log(dietPlan);
+  const handleDietPlanSearch = async () => {
+    // console.log({ userInfoForm });
+    // console.log({ selectedDiet });
+    const gptResponse = await GPT35Turbo(
+      generateDietPrompt(userInfoForm, selectedDiet)
+    );
+    console.log({ gptResponse });
+    setDietResponses(gptResponse);
+    localStorage.setItem("gptDietResponses", JSON.stringify(gptResponse));
+  };
+
+  // console.log(dietResponses);
 
   return (
     <div className="scrollable-section" style={{ color: "white" }}>
@@ -146,6 +174,10 @@ const UserInfo = () => {
             </div>
           )}
 
+          {dietPlanState && (
+            <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
+          )}
+
           {responses.length > 0 && (
             <Box mt={4} style={{ marginBottom: "80px" }}>
               <Typography
@@ -198,13 +230,18 @@ const UserInfo = () => {
                   </Button>
                 )}
 
-                <Button
-                  variant="contained"
-                  sx={{ backgroundColor: "rgb(3, 200, 168)", color: "#ffffff" }}
-                  onClick={handleDietPlan}
-                >
-                  Diet Plan
-                </Button>
+                {!dietPlanState && (
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "rgb(3, 200, 168)",
+                      color: "#ffffff",
+                    }}
+                    onClick={handleDietPlan}
+                  >
+                    Diet Plan
+                  </Button>
+                )}
               </Box>
             </Box>
           )}

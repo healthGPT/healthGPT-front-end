@@ -1,26 +1,42 @@
 import React from "react";
+import { useState, useContext } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
+import { GptContext } from "../../../context/GPT/gptContextProvider";
+
 const DietSelection = () => {
-  const [selectedDiet, setSelectedDiet] = React.useState("");
+  const { selectedDiet, setSelectedDiet } = useContext(GptContext);
 
   const handleDietChange = (event) => {
     setSelectedDiet(event.target.value);
-    // You can perform further actions based on the selected diet
   };
 
   return (
-    <FormControl>
-      <InputLabel id="diet-label">Choose Your Diet</InputLabel>
+    <FormControl style={{ width: "35%", color: "whtite" }}>
+      <InputLabel style={{ color: "white" }} id="diet-label">
+        Choose Your Diet
+      </InputLabel>
       <Select
         labelId="diet-label"
         id="diet-select"
         value={selectedDiet}
         onChange={handleDietChange}
         label="Choose Your Diet"
+        sx={{
+          color: "white",
+          "& fieldset": {
+            borderColor: "white",
+          },
+          "&:hover fieldset": {
+            borderColor: "white",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "white",
+          },
+        }}
       >
         <MenuItem value="">-- Select Diet --</MenuItem>
         <MenuItem value="alcoholFree">Alcohol Free</MenuItem>

@@ -36,6 +36,9 @@ const RoutineDetails = ({ data }) => {
                 <h3 style={{ color: "black" }} className="pose-name">
                   {routine?.exercise_name}
                 </h3>
+                <p style={{ fontSize: "10px", color: "black" }}>
+                  {routine?.repetitions}
+                </p>
               </div>
             </Grid>
           ))}

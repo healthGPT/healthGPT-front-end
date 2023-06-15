@@ -5,13 +5,18 @@ const GptContext = createContext();
 
 // Create the context provider component
 const GptContextProvider = ({ children }) => {
+  const [selectedDiet, setSelectedDiet] = useState("");
+
   const [context, setContext] = useState([]);
   const [responses, setResponses] = useState(() => {
     const localData = localStorage.getItem("gptResponses");
     return localData ? JSON.parse(localData) : [];
   });
 
-  console.log(responses);
+  const [dietResponses, setDietResponses] = useState(() => {
+    const localData = localStorage.getItem("gptDietResponses");
+    return localData ? JSON.parse(localData) : null;
+  });
 
   const addInput = (inputText) => {
     setContext((prevContext) => [...prevContext, inputText]);
@@ -43,9 +48,23 @@ const GptContextProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("gptDietResponses", JSON.stringify(dietResponses));
+  }, [dietResponses]);
+
   return (
     <GptContext.Provider
-      value={{ context, responses, addInput, setGptResponse, saveResponse }}
+      value={{
+        context,
+        responses,
+        addInput,
+        setGptResponse,
+        saveResponse,
+        dietResponses,
+        setDietResponses,
+        selectedDiet,
+        setSelectedDiet,
+      }}
     >
       {children}
     </GptContext.Provider>

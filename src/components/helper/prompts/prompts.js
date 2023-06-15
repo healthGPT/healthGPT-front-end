@@ -129,7 +129,97 @@ export const generateRunningPlan = (value) => {
       },
     ];
   
+    console.log(GPT35TurboMessageMetalSensitivities)
     return GPT35TurboMessageMetalSensitivities;
+  };
+
+
+  export const generateDietPrompt = (userInfo, diet) => {
+
+    const generateDietPromptGPT = [
+      {
+        role: "user",
+        content: `can you give me a weekly diet plan for this person: ${userInfo}`,
+      },
+      {
+        role: "user",
+        content: `For this diet: ${diet}`,
+      },
+      {
+        role: "user",
+        content: `put the this into a json properly, the best way you think it should be formatted, keep in mind the goal of this format is for it to render on the front end properly, respond in this format: 
+        "dietPlan": {
+            "restriction": "noOilAdded",
+            "meals": [
+              {
+                "day": "Monday",
+                "mealItems": [
+                  "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Tuesday",
+                "mealItems": [
+                   "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Wednesday",
+                "mealItems": [
+                   "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Thursday",
+                "mealItems": [
+                  "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Friday",
+                "mealItems": [
+                  "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Saturday",
+                "mealItems": [
+                  "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: ..”,
+                  "Dinner: …”
+                ]
+              },
+              {
+                "day": "Sunday",
+                "mealItems": [
+                  "Breakfast: …”,
+                  "Lunch: …”,
+                  "Snack: …”,
+                  "Dinner: …”
+                ]
+              }
+            ]
+          }`,
+      },
+    ];
+  
+    return generateDietPromptGPT;
   };
 
 // const GPT35TurboMessageMetalSensitivities = [
