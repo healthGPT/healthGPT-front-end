@@ -195,14 +195,9 @@ const UserInfo = () => {
               </Button>
             </div>
           )}
-          {dietPlanState && (
-            <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
-          )}
-
-          {runningResponses && <RunningPlan />}
 
           {workout && (
-            <div style={{ padding: "0 30px" }}>
+            <div style={{ padding: "0px 30px 50px 30px" }}>
               <RoutineDetails data={workout} />
               <Button
                 variant="contained"
@@ -221,6 +216,12 @@ const UserInfo = () => {
               </Button>
             </div>
           )}
+
+          {dietPlanState && (
+            <DietPlan handleDietPlanSearch={handleDietPlanSearch} />
+          )}
+
+          {runningResponses && <RunningPlan />}
 
           {responses.length > 0 && (
             <Box mt={4} style={{ marginBottom: "80px" }}>

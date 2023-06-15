@@ -53,18 +53,21 @@ const FlowDetails = ({ data }) => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <div className="details-main-container">
-              <h3
+              {/* <h3
                 style={{
                   fontWeight: "600",
                   textTransform: "uppercase",
-                  marginTop: "50px",
                 }}
               >
                 {data.sequence_name}
-              </h3>
-              {/* <p className="flow-description" style={{ color: "white" }}>
+              </h3> */}
+              <Typography
+                className="flow-description"
+                variant="subtitle2"
+                sx={{ textAlign: "left", marginBottom: "20px" }}
+              >
                 {data.description}
-              </p> */}
+              </Typography>
             </div>
           </Grid>
 
