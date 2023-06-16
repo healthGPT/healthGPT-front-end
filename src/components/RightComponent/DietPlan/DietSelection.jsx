@@ -16,27 +16,13 @@ const DietSelection = () => {
 
   return (
     <FormControl style={{ width: "35%", color: "whtite" }}>
-      <InputLabel style={{ color: "white" }} id="diet-label">
-        Choose Your Diet
-      </InputLabel>
+      <InputLabel id="diet-label">Choose Your Diet</InputLabel>
       <Select
         labelId="diet-label"
         id="diet-select"
         value={selectedDiet}
         onChange={handleDietChange}
         label="Choose Your Diet"
-        sx={{
-          color: "white",
-          "& fieldset": {
-            borderColor: "white",
-          },
-          "&:hover fieldset": {
-            borderColor: "white",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "white",
-          },
-        }}
       >
         <MenuItem value="">-- Select Diet --</MenuItem>
         <MenuItem value="alcoholFree">Alcohol Free</MenuItem>

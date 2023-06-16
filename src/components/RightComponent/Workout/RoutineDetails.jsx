@@ -8,9 +8,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import Tooltip from "@mui/material/Tooltip";
-import Box from "@mui/material/Box";
 
 const RoutineDetails = ({ data }) => {
   return (
@@ -55,7 +52,7 @@ const RoutineDetails = ({ data }) => {
             <div className="details-main-container">
               <Typography
                 className="flow-description"
-                variant="subtitle2"
+                variant="subtitle1"
                 sx={{ textAlign: "left", marginBottom: "20px" }}
               >
                 {data.description}

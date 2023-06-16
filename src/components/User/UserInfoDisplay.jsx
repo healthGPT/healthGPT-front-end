@@ -39,7 +39,18 @@ const UserInfoDisplay = ({ userInfo }) => {
               alignItems: "center",
             }}
           >
-            <Typography variant="body1">{displayText.trim()}</Typography>
+            <h4
+              style={{
+                fontWeight: "600",
+                textTransform: "uppercase",
+                fontSize: ".8rem",
+                marginBlockStart: "0.3em",
+                marginBlockEnd: "0.3em",
+              }}
+            >
+              {displayText.trim()}
+            </h4>
+            {/* <Typography variant="body1"></Typography> */}
           </Box>
         );
       })}

@@ -4,7 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 const InfoResponse = ({ data }) => {
-  console.log({ data });
   return (
     <Container maxWidth="md">
       {Object.entries(data).map(([category, message], index) => (

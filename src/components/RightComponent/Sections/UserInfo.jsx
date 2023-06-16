@@ -37,6 +37,16 @@ const UserInfo = () => {
   const { isLoading, setIsLoading } = useContext(LoadingContext);
   const userInfoForm = localStorage.getItem("UserInfoForm");
 
+  let user;
+  if (userInfoForm && typeof userInfoForm === "string") {
+    try {
+      user = JSON.parse(userInfoForm);
+    } catch (e) {
+      console.error("Invalid JSON string:", userInfoForm);
+      user = null;
+    }
+  }
+
   const [yoga, setYoga] = useState(() => {
     const localData = localStorage.getItem("yoga");
     return localData ? JSON.parse(localData) : null;
@@ -156,16 +166,20 @@ const UserInfo = () => {
             <div style={{ width: "100%", margin: "0 auto" }}>
               <div>
                 <img src={gptLogo} alt="gpt-logo" style={{ width: "40px" }} />
-                <h4
-                  style={{
-                    marginBottom: "40px",
-                    fontWeight: "600",
-                    textTransform: "uppercase",
-                    color: "rgb(51, 51, 51)",
-                  }}
-                >
-                  HealthGPT suggestions based on your user info
-                </h4>
+                {/* <h5>Hi, {user.name}</h5> */}
+
+                {user && (
+                  <h4
+                    style={{
+                      marginBottom: "40px",
+                      fontWeight: "600",
+                      textTransform: "uppercase",
+                      color: "rgb(51, 51, 51)",
+                    }}
+                  >
+                    HealthGPT suggestions based on your user info
+                  </h4>
+                )}
               </div>
 
               {responses.map((response, index) => (
@@ -175,45 +189,51 @@ const UserInfo = () => {
           </div>
 
           {yoga && (
-            <div style={{ padding: "50px 30px" }}>
+            <div style={{ padding: "20px 30px" }}>
               <FlowDetails data={yoga} />
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "rgb(3, 200, 168)",
-                  color: "#ffffff",
-                  // marginRight: "5px",
-                  marginTop: "10px",
-                }}
-                onClick={handleYogaClick}
-              >
-                <img
-                  src={ReloadIcon}
-                  alt="reload-icon"
-                  style={{ width: "20px", filter: "invert(100%)" }}
-                />
-              </Button>
+
+              <div style={{ width: "100%", display: "flex" }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "rgb(3, 200, 168)",
+                    color: "#ffffff",
+                    // marginRight: "5px",
+                    // marginTop: "10px",
+                  }}
+                  onClick={handleYogaClick}
+                >
+                  <img
+                    src={ReloadIcon}
+                    alt="reload-icon"
+                    style={{ width: "14px", filter: "invert(100%)" }}
+                  />
+                </Button>
+              </div>
             </div>
           )}
 
           {workout && (
-            <div style={{ padding: "0px 30px 50px 30px" }}>
+            <div style={{ padding: "20px 30px" }}>
               <RoutineDetails data={workout} />
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "rgb(3, 200, 168)",
-                  color: "#ffffff",
-                  marginRight: "5px",
-                }}
-                onClick={handleWorkoutClick}
-              >
-                <img
-                  src={ReloadIcon}
-                  alt="reload-icon"
-                  style={{ width: "20px", filter: "invert(100%)" }}
-                />
-              </Button>
+
+              <div style={{ width: "100%", display: "flex" }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "rgb(3, 200, 168)",
+                    color: "#ffffff",
+                    marginRight: "5px",
+                  }}
+                  onClick={handleWorkoutClick}
+                >
+                  <img
+                    src={ReloadIcon}
+                    alt="reload-icon"
+                    style={{ width: "14px", filter: "invert(100%)" }}
+                  />
+                </Button>
+              </div>
             </div>
           )}
 
@@ -227,14 +247,16 @@ const UserInfo = () => {
             <Box mt={4} style={{ marginBottom: "80px" }}>
               {/* add !runningPlan */}
               {!workout && !yoga && !dietPlanState && !runningResponses && (
-                <Typography
-                  variant="h4"
-                  component="h3"
-                  color="white"
-                  style={{ fontWeight: 300 }}
+                <h4
+                  style={{
+                    // marginBottom: "40px",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                    color: "rgb(51, 51, 51)",
+                  }}
                 >
                   Further Action Suggestions:
-                </Typography>
+                </h4>
               )}
               <Box mt={2}>
                 {/* if software engineer render this */}
