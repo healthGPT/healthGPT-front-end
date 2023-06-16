@@ -4,10 +4,12 @@ import { LoadingContext } from "../../../context/LoadingContext/LoadingContext";
 import CoolLoadingSpinner from "../../Spinner/CoolLoadingSpinner";
 import { JsonDataContext } from "../../../context/UserUploads/JsonDataContext";
 
+import Button from "@mui/material/Button";
+
 import gptLogo from "./gpt-logo.png";
 
 const BloodPanel = () => {
-  const { jsonData } = useContext(JsonDataContext);
+  const { jsonDataBloodPanel } = useContext(JsonDataContext);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   const userInfoForm = localStorage.getItem("UserInfoForm");
@@ -21,6 +23,12 @@ const BloodPanel = () => {
       user = null;
     }
   }
+
+  const handleGenerateBloodPanel = () => {
+    console.log(user);
+    console.log(jsonDataBloodPanel);
+  };
+
   return (
     <div className="scrollable-section">
       {isLoading ? (
@@ -58,6 +66,17 @@ const BloodPanel = () => {
                   </h4>
                 )}
               </div>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "rgb(3, 200, 168)",
+                  color: "#ffffff",
+                  marginRight: "5px",
+                }}
+                onClick={handleGenerateBloodPanel}
+              >
+                Generate Report
+              </Button>
             </div>
           </div>
         </React.Fragment>
@@ -67,15 +86,3 @@ const BloodPanel = () => {
 };
 
 export default BloodPanel;
-// const {
-//   jsonData,
-//   handleFileChange,
-//   handleFileChangeHealthPredisposition,
-//   jsonDataHealthPredisposition,
-//   jsonDataPharmacogenetics,
-//   handleFileChangePharmacogenetics,
-//   jsonDataBloodPanel,
-//   handleFileChangeBloodPanel,
-//   userInfoForm,
-//   setUserInfoForm,
-// } = useContext(JsonDataContext);

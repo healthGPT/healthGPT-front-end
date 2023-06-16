@@ -5,8 +5,15 @@ import CoolLoadingSpinner from "../../Spinner/CoolLoadingSpinner";
 import gptLogo from "./gpt-logo.png";
 import { JsonDataContext } from "../../../context/UserUploads/JsonDataContext";
 
+import Button from "@mui/material/Button";
+
 const PharmacogeneticsReport = () => {
-  const { jsonData } = useContext(JsonDataContext);
+  const {
+    jsonData,
+    jsonDataHealthPredisposition,
+    jsonDataPharmacogenetics,
+    jsonDataBloodPanel,
+  } = useContext(JsonDataContext);
   const { isLoading } = useContext(LoadingContext);
 
   const userInfoForm = localStorage.getItem("UserInfoForm");
@@ -20,6 +27,11 @@ const PharmacogeneticsReport = () => {
       user = null;
     }
   }
+
+  const handleGeneratePharmacogeneticsReport = () => {
+    console.log(user);
+    console.log(jsonDataPharmacogenetics);
+  };
 
   return (
     <div className="scrollable-section">
@@ -57,6 +69,17 @@ const PharmacogeneticsReport = () => {
                   </h4>
                 )}
               </div>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "rgb(3, 200, 168)",
+                  color: "#ffffff",
+                  marginRight: "5px",
+                }}
+                onClick={handleGeneratePharmacogeneticsReport}
+              >
+                Generate Report
+              </Button>
             </div>
           </div>
         </React.Fragment>

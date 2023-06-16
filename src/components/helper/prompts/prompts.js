@@ -286,6 +286,22 @@ export const UserInfoPrompt = (value) => {
     return generateSuggestionUserInfoGPT
   };
 
+
+  export const generateHealthPredisposition = (user, jsonData) => {
+    const generateHealthPredispositionGPT = [
+      {
+        role: "system",
+        content: `You are a health professional, doctor, coach, nutritionist`,
+      },
+      {
+        role: "user",
+        content: `Make a lifestyle suggestions for this person: ${JSON.stringify(user)}. Based on this data: ${JSON.stringify(jsonData)}`,
+      },
+    ]
+  
+    return generateHealthPredispositionGPT
+  }
+  
 // const GPT35TurboMessageMetalSensitivities = [
 //     { role: "system", content: `You are an expert on ${section} in human beings.` },
 

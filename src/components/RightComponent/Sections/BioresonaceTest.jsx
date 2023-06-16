@@ -6,6 +6,10 @@ import CoolLoadingSpinner from "../../Spinner/CoolLoadingSpinner";
 import gptLogo from "./gpt-logo.png";
 import { JsonDataContext } from "../../../context/UserUploads/JsonDataContext";
 
+import Button from "@mui/material/Button";
+
+import { GPT35Turbo } from "../../helper/openai";
+
 const BioresonaceTest = () => {
   const { jsonData } = useContext(JsonDataContext);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
@@ -21,6 +25,22 @@ const BioresonaceTest = () => {
       user = null;
     }
   }
+
+  const handleGenerateBioresonaceTest = async () => {
+    console.log(user);
+    console.log(jsonData);
+    // try {
+    //   setIsLoading(true);
+    //   const gptResponse = await GPT35Turbo(
+    //     generateDietPrompt(user, jsonData)
+    //   );
+    //   setDietResponses(gptResponse);
+    //   localStorage.setItem("gptDietResponses", JSON.stringify(gptResponse));
+    //   setIsLoading(false);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
 
   return (
     <div className="scrollable-section">
@@ -58,6 +78,17 @@ const BioresonaceTest = () => {
                   </h4>
                 )}
               </div>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "rgb(3, 200, 168)",
+                  color: "#ffffff",
+                  marginRight: "5px",
+                }}
+                onClick={handleGenerateBioresonaceTest}
+              >
+                Generate Report
+              </Button>
             </div>
           </div>
         </React.Fragment>
