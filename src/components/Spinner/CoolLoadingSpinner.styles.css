@@ -39,13 +39,13 @@ section .loader span::before {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #00ff0a;
-    box-shadow: 0 0 10px #00ff0a,
-                0 0 20px #00ff0a,
-                0 0 40px #00ff0a,
-                0 0 60px #00ff0a,
-                0 0 80px #00ff0a,
-                0 0 100px #00ff0a;
+    /* background: rgb(44, 42, 213); */
+    box-shadow: 0 0 10px rgb(44, 42, 213),
+                0 0 20px rgb(44, 42, 213),
+                0 0 40px rgb(44, 42, 213),
+                0 0 60px rgb(44, 42, 213),
+                0 0 80px rgb(44, 42, 213),
+                0 0 100px rgb(44, 42, 213);
     animation: animate 2s linear infinite;
     animation-delay: calc(0.1s * var(--i));
 }

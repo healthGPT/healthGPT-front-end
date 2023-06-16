@@ -146,6 +146,8 @@ const UserInfo = () => {
           {/* <Typography variant="h2" component="h1">
             User Info Section
           </Typography> */}
+
+          {/* <CoolLoadingSpinner /> */}
           <Box mt={2}>
             {context.map((text, index) => (
               <Typography variant="body1" key={index}>

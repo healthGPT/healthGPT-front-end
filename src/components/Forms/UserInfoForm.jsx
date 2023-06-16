@@ -79,30 +79,35 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ width: "100%", margin: "0 auto" }}>
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Name"
         type="name"
         value={formState.name}
         onChange={createChangeHandler("name")}
         required
       />
+
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Email"
         type="email"
         value={formState.email}
         onChange={createChangeHandler("email")}
         required
       />
+
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Age"
         type="number"
         value={formState.age}
         onChange={createChangeHandler("age")}
         required
       />
-      <br />
-      <FormControl>
+
+      <FormControl style={{ width: "100%", marginBottom: "20px" }}>
         <InputLabel id="sex-label">Sex</InputLabel>
         <Select
           labelId="sex-label"
@@ -115,31 +120,35 @@ const UserInfoForm = () => {
           <MenuItem value="Female">Female</MenuItem>
         </Select>
       </FormControl>
-      <br />
+
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Height (feet)"
         type="number"
         value={formState.heightFeet}
         onChange={createChangeHandler("heightFeet")}
         required
       />
+
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Height (inches)"
         type="number"
         value={formState.heightInches}
         onChange={createChangeHandler("heightInches")}
         required
       />
-      <br />
+
       <TextField
+        style={{ width: "100%", marginBottom: "20px" }}
         label="Weight"
         type="number"
         value={formState.weight}
         onChange={createChangeHandler("weight")}
         required
       />
-      <br />
-      <FormControl>
+
+      <FormControl style={{ width: "100%", marginBottom: "20px" }}>
         <InputLabel id="job-label">Job</InputLabel>
         <Select
           labelId="job-label"
@@ -155,8 +164,20 @@ const UserInfoForm = () => {
           ))}
         </Select>
       </FormControl>
-      <br />
-      <Button type="submit" variant="contained" color="primary">
+
+      <Button
+        sx={{
+          width: "100%",
+          height: "50px",
+          backgroundColor: "rgb(3, 200, 168)",
+          color: "#ffffff",
+          marginRight: "5px",
+          marginTop: "20px",
+        }}
+        type="submit"
+        variant="contained"
+        color="primary"
+      >
         Submit
       </Button>
     </form>

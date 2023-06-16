@@ -3,7 +3,7 @@
   width: 100%;
   margin: 0 auto;
   background: #ffffff;
-  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.04);
+  /* box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.04); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,8 +21,8 @@
 .custom-file-input::before {
   content: 'Upload File';
   display: inline-block;
-  background: #3b70f1; /* Change the background color */
-  border: 1px solid #3b70f1; /* Make the border color consistent */
+  background: rgb(44, 42, 213);
+  border: 1px solid rgb(44, 42, 213); /* Make the border color consistent */
   border-radius: 3px;
   box-sizing: border-box; /* Add this line */
   /* padding: 5px 8px; */
