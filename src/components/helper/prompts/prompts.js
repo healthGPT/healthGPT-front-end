@@ -258,6 +258,34 @@ export const UserInfoPrompt = (value) => {
   };
 
 
+  export const generateSuggestionUserInfo = (userInfo) => {
+    // switch statement that returns based on the section passed in
+  
+    const generateSuggestionUserInfoGPT = [
+      {
+        role: "user",
+        content: `Make a lifestyle suggestion for this person: ${userInfo}`,
+      },
+      {
+        role: "user",
+        content: `break down these suggestions in 6 categories:
+        - Nutrition: take into consideration job of the user and other things 
+        - Exercise: take into consideration bmi of the user and other factors 
+        - Stress Management:  take into consideration job of the user and other things 
+        - Mental Health: take into consideration job of the user and other things 
+        - Hazard Exposure: take into consideration job of the user and other things 
+        - Social Isolation: take into consideration job of the user and other things  `,
+      },
+      {
+        role: "user",
+        content: `Please return this response in a json format`,
+      },
+
+    ];
+  
+    return generateSuggestionUserInfoGPT
+  };
+
 // const GPT35TurboMessageMetalSensitivities = [
 //     { role: "system", content: `You are an expert on ${section} in human beings.` },
 

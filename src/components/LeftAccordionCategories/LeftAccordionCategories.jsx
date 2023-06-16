@@ -324,7 +324,7 @@ const LeftAccordionCategories = () => {
     <React.Fragment>
       <Accordion
         style={{
-          border: `2px solid ${
+          border: `1px solid ${
             section === "User Info"
               ? "#2c2ad5"
               : userInfoForm
@@ -396,7 +396,7 @@ const LeftAccordionCategories = () => {
 
       <Accordion
         style={{
-          border: `2px solid ${
+          border: `1px solid ${
             section === "Blood Panel Test"
               ? "#2c2ad5"
               : jsonDataBloodPanel
@@ -446,7 +446,7 @@ const LeftAccordionCategories = () => {
 
       <Accordion
         style={{
-          border: `2px solid ${
+          border: `1px solid ${
             section === "Health Predisposition Report"
               ? "#2c2ad5"
               : jsonDataHealthPredisposition
@@ -498,7 +498,7 @@ const LeftAccordionCategories = () => {
 
       <Accordion
         style={{
-          border: `2px solid ${
+          border: `1px solid ${
             section === "Bioresonace Test"
               ? "#2c2ad5"
               : jsonData
@@ -568,7 +568,7 @@ const LeftAccordionCategories = () => {
 
       <Accordion
         style={{
-          border: `2px solid ${
+          border: `1px solid ${
             section === "Pharmacognetics Report"
               ? "#2c2ad5"
               : jsonDataPharmacogenetics

@@ -6,6 +6,8 @@ import "./RightComponent.style.css";
 const RightCompnent = () => {
   const { summaryData } = useContext(SummaryContext);
 
+  console.log(summaryData);
+
   //   console.log(Object.keys(summaryData["Bioresonance-Test-Report"]));
 
   //   const { key, value } =
