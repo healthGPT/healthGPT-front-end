@@ -62,4 +62,4 @@ Roman Protoliuk
 
 ## Contact Information
 
-For more information, please reach out to me on [LinkedIn](https://www.linkedin.com/in/romanprotoliuk).
+For more information, please reach out to me on [LinkedIn](https://www.linkedin.com/in/roman-protoliuk-a5340a170).
