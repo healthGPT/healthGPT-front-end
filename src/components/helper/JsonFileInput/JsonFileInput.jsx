@@ -27,6 +27,7 @@ const JsonFileInput = ({ onFileChange }) => {
           accept=".json"
           onChange={handleFileChange}
           className="custom-file-input"
+          data-testid="json-file-input"
         />
       </div>
     </div>

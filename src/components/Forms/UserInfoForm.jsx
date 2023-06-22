@@ -48,8 +48,6 @@ const UserInfoForm = () => {
 
       // call GPT here
       const gptResponse = await GPT35Turbo(UserInfoPrompt(UserInfoFormData));
-      console.log("user info prompt", UserInfoPrompt(UserInfoFormData));
-      console.log("gpt response", gptResponse);
 
       setGptResponse(gptResponse);
 

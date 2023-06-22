@@ -6,7 +6,7 @@ import { Configuration, OpenAIApi } from "openai";
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
-//           Authorization: `Bearer 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`,
+//           Authorization: `Bearer ...`,
 //         },
 //         body: JSON.stringify({
 //           prompt: inputText,
